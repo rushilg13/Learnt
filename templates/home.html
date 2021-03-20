@@ -24,7 +24,7 @@
 <body>
       <nav class="navbar">
           <div>
-              <img class="imgabout image-logo" src='' alt="Logo" />
+              <h3 class="heading">MatchEd.</h3>
           </div>
           <div class="midnav">
               <ul>
@@ -32,36 +32,113 @@
                       <a href="/">Home</a>
                   </li>
                   <li>
-                      <a href="/contact.html">Contact</a>
+                      <a href="/contact">Contact</a>
                   </li>
                   <li>
-                      <a href="/about.html">About</a>
+                      <a href="/about">About</a>
                   </li>
                 </ul>
           </div>
           <div>
-              <button class="btnlogin">
-                  Login
-              </button>
+              <a href={{url_for('logout')}}>
+                <img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/>
+            </a>
           </div>
       </nav>
         <div class="container">
-          <div class="row align-items-center ">
-          <div class="col-lg-5">
-              <h1 class="font-weight-bold heading ">I want to learn</h1>
-              <span class="heading change_content1 typewriter"></span>
-              <h1 class="font-weight-bold heading">I can teach</h1>
-              <span class="heading change_content2 typewriter"></span><br><br>
-              <p>Blah is a free platform that acts a matchmaker 
-                for people who wants to learn new skills and teach 
-                a skill they are familiar with in return.
-                </p><br><br>
-                <button>Find me a match</button>
+          <div class="cont1">
+              <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/iMac 1.png' alt="some aesthetic shit" /><br><br>
+              <h4 class="heading">What I want to learn</h4><br>
+              <input type="checkbox" id="design" name="design" value="design">
+                <label for="design">Design</label>
+                <input type="checkbox" id="ml" name="ml" value="ml">
+                <label for="design">Machine Learning</label><br>
+                <input type="checkbox" id="ai" name="ai" value="ai">
+                <label for="ai">Artificial Intelligence</label>
+                <input type="checkbox" id="crypto" name="crypto" value="crypto">
+                <label for="crypto">Blockchain</label><br>
+                <input type="checkbox" id="frontend" name="frontend" value="frontend">
+                <label for="Frontend">Frontend</label>
+                <input type="checkbox" id="backend" name="backend" value="backend">
+                <label for="backend">Backend</label>
+                <input type="checkbox" id="app" name="app" value="app">
+                <label for="app">App Dev</label><br><br><br>
+                <h4 class="heading">What I can teach</h4><br>
+              <input type="checkbox" id="design" name="design" value="design">
+                <label for="design">Design</label>
+                <input type="checkbox" id="ml" name="ml" value="ml">
+                <label for="design">Machine Learning</label><br>
+                <input type="checkbox" id="ai" name="ai" value="ai">
+                <label for="ai">Artificial Intelligence</label>
+                <input type="checkbox" id="crypto" name="crypto" value="crypto">
+                <label for="crypto">Blockchain</label><br>
+                <input type="checkbox" id="frontend" name="frontend" value="frontend">
+                <label for="Frontend">Frontend</label>
+                <input type="checkbox" id="backend" name="backend" value="backend">
+                <label for="backend">Backend</label>
+                <input type="checkbox" id="app" name="app" value="app">
+                <label for="app">App Dev</label>
             </div>
-            <div class="col-lg-7">
-            <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image" src='../static/img/iMac 1.png' alt="some aesthetic shit" />
+              <div class="cont2">
+                  <form class="boxdiv">
+                      <h4 class="heading">I want to learn</h4>
+                      <select>
+                        <option value="design">Design</option>
+                        <option value="ml">Machine Learning</option>
+                        <option value="ai">Artificial Intelligence</option>
+                        <option value="crypto">Blockchain</option>
+                        <option value="frontend">Frontend</option>
+                        <option value="backend">Backend</option>
+                        <option value="app">App Development</option>
+                      </select>
+                      <br><br>
+                      <h4 class="heading">I can teach</h4>
+                      <select>
+                        <option value="design">Design</option>
+                        <option value="ml">Machine Learning</option>
+                        <option value="ai">Artificial Intelligence</option>
+                        <option value="crypto">Blockchain</option>
+                        <option value="frontend">Frontend</option>
+                        <option value="backend">Backend</option>
+                        <option value="app">App Development</option>
+                      </select>
+                      <br><br>
+                      <button class="btnlogin">Add Post</button>
+                  </form>
+                  <br><br>
+                  <h4 class="heading">Your Matches</h4><br><br>
+                  <div class="boxdiv2">
+                      <div>
+                           <img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/><br><br>
+                           <button class="btnlogin">Connect</button>
+                      </div>
+                      <div style="padding-left: 100px;">
+                          <h5 class="heading">Name1</h5>
+                          <br>
+                          <p>Role and current status</p>
+                          <br>
+                          <div style="display: flex;">
+                            <div>
+                                <h4 class="highlighted-heading">Wants To learn</h5>
+                                
+                                <h5 class="heading">Topic</h5>
+                            </div>
+                            <div>.   .</div>
+                            <div>
+                                <h4 class="highlighted-heading">Teaches</h5>
+                                
+                                <h5 class="heading">Topic</h5>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+            <div class="cont3">
+                <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/Headphones 1 .png' alt="some aesthetic shit" />
+                <br><br><br>
             <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/HDD 1.png' alt="some aesthetic shit" />
         </div>
+            </div>
           </div>
         </div>
         <div class="footer">

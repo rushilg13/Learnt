@@ -104,7 +104,10 @@ li {
   color: rgb(192, 177, 177);
   color: white;
 }
-
+.highlighted-heading {
+  background-color: rgb(179, 183, 250);
+  color: rgb(255, 255, 255);
+}
 @keyframes changetext1 {
   0% {
     content: "Machine Learning";
@@ -176,8 +179,23 @@ input {
   box-shadow: 5px 5px 9px rgb(78, 83, 116);
 }
 
+.boxdiv {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.boxdiv2 {
+  display: flex;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+  width: 500px;
+}
+
 .container {
   padding-top: 125px;
+  display: flex;
 }
 
 button {
@@ -207,6 +225,13 @@ button {
   color: rgb(241, 239, 239);
   text-decoration: none;
 }
+
+.dpimg {
+  border-radius: 100%;
+  width: 90px;
+  height: 100px;
+}
+
 .icon {
   padding: 10px;
   border-radius: 100px;
@@ -220,12 +245,13 @@ button {
 }
 
 select {
-  padding: 5px 5px;
+  font-size: 1.2rem;
+  padding: 10px 100px;
   border: none;
   font-family: "Montserrat", sans-serif;
   border-radius: 4px;
-  background-color: #f1f1f1;
-  color: rgb(82, 93, 151);
+  background-color: rgba(108, 132, 248, 0.29);
+  color: rgb(255, 255, 255);
 }
 .buttoncancel {
   background-color: #555;
@@ -234,4 +260,15 @@ select {
 .italichead {
   font-style: italic;
   color: #555;
+}
+
+.cont1 {
+  width: 400px;
+  padding-right: 100px;
+}
+
+.cont2 {
+  width: 580px;
+  padding-right: 100px;
+  padding-bottom: 100px;
 }
