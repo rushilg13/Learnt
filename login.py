@@ -39,12 +39,13 @@ def signup():
         print(fname, lname, email, pass1)
         if request.method == 'POST':
             if user_collection.count_documents({"Email": email}):
-                return "User already Exists!"
+                session['email'] = email
+                return render_template('index.html', fname = fname, lname = lname, email=session['email'])
             else:
                 cipher = generate_password_hash(pass1, method='sha256')
                 user_collection.insert_one({'First Name': fname, 'Last Name': lname, 'Email': email, 'Password': cipher})
                 session['email'] = email
-                return render_template('index.html', fname = fname, lname = lname)
+                return render_template('index.html', fname = fname, lname = lname, email=session['email'])
         else:
             return redirect(url_for('home'))
     return render_template("signup.html", form=form)
@@ -60,7 +61,7 @@ def login():
             if check_password_hash(user['Password'], pass1):
                 print("item exists")
                 session['email'] = email
-                return render_template('index.html', fname = user['First Name'], lname = user['Last Name'], email=email)
+                return render_template('index.html', fname = user['First Name'], lname = user['Last Name'], email=session['email'])
             else:
                 print("item is not existed")
                 flash('Invalid Credentials')
@@ -71,13 +72,24 @@ def login():
 
 @app.route('/logout')
 def logout():
-    if email in session:
+    if 'email' in session:
         session.pop('email', None)
     return redirect(url_for('home'))
 
 @app.route('/home')
 def home():
     return render_template('index.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/profile')
+def profile():
+    if 'email' in session:
+        user = user_collection.find_one({"Email":session['email']})
+        print(user['First Name'], user['Last Name'])
+    return render_template('profile.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

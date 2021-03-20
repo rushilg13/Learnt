@@ -6,13 +6,18 @@
 
 <body>
     <div class="topnav">
-        <a class="active" href="/">Home</a>
-        <a href="/add">Profile</a>
-        <a href="/about">About</a>
+        <a class="active" href="/home">Home</a>
+
         {% if 'email' in session %}
-        <a href="/logout">Log Out</a>
+            <a href="/profile">Profile</a>
+        {% endif %}
+
+        <a href="/about">About</a>
+
+        {% if 'email' in session %}
+            <a href="/logout">Log Out</a>
         {% else %}
-        <a href="/login">Log In</a>
+            <a href="/login">Log In</a>
         {% endif %}
     </div>
     <p style="color: aliceblue;">Hi, {{ fname }} </p>
