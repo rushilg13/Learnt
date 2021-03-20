@@ -1,0 +1,157 @@
+<html lang="en">
+<head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Quicksand&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" type="image/jpg" href="../static/img/logo.svg"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/index.css"/>
+</head>
+
+<body>
+      <nav class="navbar">
+          <div>
+            <img class="imgabout image-logo" src='../static/img/logo.svg' alt="Logo" />
+          </div>
+          <div class="midnav">
+              <ul>
+                  <li>
+                      <a href="/">Home</a>
+                  </li>
+                  <li>
+                      <a href="/contact">Contact</a>
+                  </li>
+                  <li>
+                      <a href="/about">About</a>
+                  </li>
+                {% if 'email' in session %}
+                    <li>
+                        <a href="/logout">Logout</a>
+                    </li>
+                {% else %}
+                <li>
+                    <a href="/login">Login</a>
+                </li>
+                {% endif %}
+                </ul>
+          </div>
+          <div>
+              <a href={{url_for('logout')}}>
+                <!-- <img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/> -->
+            </a>
+          </div>
+      </nav>
+        <div class="container">
+          <div class="cont1">
+            <form action="{{ url_for('home') }}" method="POST">
+              <!-- <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/iMac 1.png' alt="some aesthetic shit" /><br><br> -->
+              <h4 class="heading">What I want to learn</h4><br>
+              <input type="checkbox" id="design" name="learn" value="Design">
+                <label for="design">Design</label>
+                <input type="checkbox" id="ml" name="learn" value="Machine Learning">
+                <label for="design">Machine Learning</label><br>
+                <input type="checkbox" id="ai" name="learn" value="Artificial Intelligence">
+                <label for="ai">Artificial Intelligence</label>
+                <input type="checkbox" id="crypto" name="learn" value="Blockchain">
+                <label for="crypto">Blockchain</label><br>
+                <input type="checkbox" id="frontend" name="learn" value="Frontend">
+                <label for="Frontend">Frontend</label>
+                <input type="checkbox" id="backend" name="learn" value="Backend">
+                <label for="backend">Backend</label>
+                <input type="checkbox" id="app" name="learn" value="App Devlopment">
+                <label for="app">App Dev</label><br><br><br>
+                <h4 class="heading">What I can teach</h4><br>
+              <input type="checkbox" id="design" name="teach" value="Design">
+                <label for="design">Design</label>
+                <input type="checkbox" id="ml" name="teach" value="Machine Learning">
+                <label for="design">Machine Learning</label><br>
+                <input type="checkbox" id="ai" name="teach" value="Artificial Intelligence">
+                <label for="ai">Artificial Intelligence</label>
+                <input type="checkbox" id="crypto" name="teach" value="Blockchain">
+                <label for="crypto">Blockchain</label><br>
+                <input type="checkbox" id="frontend" name="teach" value="Frontend">
+                <label for="Frontend">Frontend</label>
+                <input type="checkbox" id="backend" name="teach" value="Backend">
+                <label for="backend">Backend</label>
+                <input type="checkbox" id="app" name="teach" value="App Devlopment">
+                <label for="app">App Dev</label>
+                <input type="submit">
+            </form>
+            </div>
+              <div class="cont2">
+                  {% if 'email' in session %}
+                <form action="{{ url_for('home') }}" method="POST" class="boxdiv">
+                    {{ form_add.csrf_token }}
+                    <h4 class="heading">I want to learn</h4>
+                    {{ form_add.to_learn }}
+                    <br>
+                    <h4 class="heading">I can teach</h4>
+                    {{ form_add.can_teach }}
+                    {{ form_add.sub }}
+                  </form>
+                  {% endif %}
+                  <br><br>
+
+                  <h4 class="heading">Your Matches</h4><br><br>
+
+                <div>
+                    <br><br>
+                    {% for post in cursor %}
+                        <div>
+                            <div class="boxdiv2" style="width: 480px;">
+                                Posted by : {{post['First_Name']}} {{post['Last_Name']}} <br>
+                                Can Teach : {{post['Teach']}} <br>
+                                Wants to Learn : {{post['Learn']}} <br>
+                                Email : {{post['Email']}} <br><br/>
+                                <div style="margin-left: 80px;">
+                                <br><br>
+                                <a href= mailto:{{post['Email']}} ><button class="btnlogin">Send Email</button></a>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <br>
+                    {% endfor %}
+              </div>
+            <div class="cont3">
+                <!-- <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/Headphones 1 .png' alt="some aesthetic shit" /> -->
+                <br><br><br>
+            <!-- <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/HDD 1.png' alt="some aesthetic shit" /> -->
+        </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+            <div class="f1">
+                <h4>About</h4><br>
+                <h5>About us<br><br>Team<br><br>Our purpose and vision</h5>
+            </div>
+            <div class="f1">
+                <h4>Legal</h4><br>
+                <h5>Terms and Conditions<br><br>Privacy Policy<br><br>Offer Terms</h5>
+            </div>
+            <div class="f1">
+                <h4>Contact</h4><br>
+                <h5>Instagram<br><br>Facebook<br><br>Twitter</h5>
+            </div>
+            <div class="f1">
+                <h4>Download App</h4><br>
+                <button class="whitebtn">Download Now</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
