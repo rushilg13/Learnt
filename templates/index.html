@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="image/jpg" href="../static/blue.jpg"/>
+    <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='style.css')}}"/>
+</head>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="/">CouponShare</a>
+        <a href="/add">Add Coupon</a>
+        <a href="/about">About</a>
+        {% if 'email' in session %}
+        <a href="/logout">Log Out</a>
+        {% else %}
+        <a href="/login">Log In</a>
+        {% endif %}
+    </div>
+    <p style="color: aliceblue;">Hi, {{ fname }} </p>
+</body>
+</html>
