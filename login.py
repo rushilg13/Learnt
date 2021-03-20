@@ -22,8 +22,8 @@ class inputFormlogin(Form):
     sub = SubmitField('Login')
 
 class inputFormAdd(Form):
-    to_learn = SelectMultipleField('to_learn', choices=[('App Development', 'App Devlopment'), ('Blockchain', 'Blockchain'), ('Design', 'Design'), ('Machine Learning', 'Machine Learning'), ('Artificial Intelligence', 'Artificial Intelligence')], validators=[DataRequired()])
-    can_teach = SelectMultipleField('can_teach', choices=[('App Development', 'App Devlopment'), ('Blockchain', 'Blockchain'), ('Design', 'Design'), ('Machine Learning', 'Machine Learning'), ('Artificial Intelligence', 'Artificial Intelligence')], validators=[DataRequired()])
+    to_learn = SelectMultipleField('to_learn', choices=[('Frontend', 'Frontend'), ('Backend', 'Backend'), ('App Development', 'App Devlopment'), ('Blockchain', 'Blockchain'), ('Design', 'Design'), ('Machine Learning', 'Machine Learning'), ('Artificial Intelligence', 'Artificial Intelligence')], validators=[DataRequired()])
+    can_teach = SelectMultipleField('can_teach', choices=[('Frontend', 'Frontend'), ('Backend', 'Backend'), ('App Development', 'App Devlopment'), ('Blockchain', 'Blockchain'), ('Design', 'Design'), ('Machine Learning', 'Machine Learning'), ('Artificial Intelligence', 'Artificial Intelligence')], validators=[DataRequired()])
     sub = SubmitField('Add')
 
 db_password = input("Password for database is:")
@@ -94,6 +94,13 @@ def logout():
 def home():
     if 'email' not in session:
         cursor = add_collection.find()
+        if request.method=="POST":
+            teach = request.form.getlist("teach")
+            learn = request.form.getlist("learn")
+            # for i in cursor:
+            #     print(i['Learn'], teach)
+            #     if((i['Learn'] in teach) or (i['Teach'] in learn)):
+            #         return render_template('home.html', i = i)
         return render_template('home.html', cursor=cursor)
     else:
         form_add = inputFormAdd()
@@ -101,6 +108,10 @@ def home():
         if request.method=="POST":
             can_teach = form_add.can_teach.data
             to_learn = form_add.to_learn.data
+            teach = request.form.getlist("teach")
+            learn = request.form.getlist("learn")
+            print(teach)
+            print(learn)
             print(can_teach, to_learn)
             user = user_collection.find_one({"Email":session['email']})
             if request.method=="POST":
