@@ -11,5 +11,5 @@ We plan on using knowledge as a commodity. We are planning on using it to exchan
 6. navigate in browser to http://localhost:5000/signup <br>
 
 # Design
--https://www.figma.com/file/B51mbdf2MCEjvTrrV6Luy9/OG-hacc?node-id=0%3A1
--https://www.figma.com/proto/B51mbdf2MCEjvTrrV6Luy9/OG-hacc?node-id=1%3A2&scaling=scale-down-width
+-https://www.figma.com/file/B51mbdf2MCEjvTrrV6Luy9/OG-hacc?node-id=0%3A1 <br>
+-https://www.figma.com/proto/B51mbdf2MCEjvTrrV6Luy9/OG-hacc?node-id=1%3A2&scaling=scale-down-width <br>
