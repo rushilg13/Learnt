@@ -21,11 +21,17 @@ class inputFormlogin(Form):
     pass1 = PasswordField('pass1', validators=[DataRequired()])
     sub = SubmitField('Login')
 
+class inputFormAdd(Form):
+    to_learn = StringField('to_learn', validators=[DataRequired()])
+    can_teach = StringField('can_teach', validators=[DataRequired()])
+    sub = SubmitField('Add')
+
 db_password = input("Password for database is:")
 CONNECTION_STRING = f"mongodb+srv://VIT_Admin:{db_password}@vitdiaries.tpuku.mongodb.net/CouponShare?retryWrites=true&w=majority"
 client = pymongo.MongoClient(CONNECTION_STRING)
 db = client.get_database('Learnt!')
 user_collection = pymongo.collection.Collection(db, 'Users')
+add_collection = pymongo.collection.Collection(db, 'Add')
 
 @app.route('/')
 def landing():
@@ -46,13 +52,13 @@ def signup():
         print(fname, lname, email, pass1)
         if request.method == 'POST':
             if user_collection.count_documents({"Email": email}):
-                session['email'] = email
-                return render_template('index.html', fname = fname, lname = lname, email=session['email'])
+                flash('User already Exists. Try Login!')
+                return redirect(url_for('login'))
             else:
                 cipher = generate_password_hash(pass1, method='sha256')
                 user_collection.insert_one({'First Name': fname, 'Last Name': lname, 'Email': email, 'Password': cipher})
                 session['email'] = email
-                return render_template('index.html', fname = fname, lname = lname, email=session['email'])
+                return render_template('home.html', fname = fname, lname = lname, email=session['email'])
         else:
             return redirect(url_for('home'))
     return render_template("signup.html", form=form)
@@ -68,7 +74,7 @@ def login():
             if check_password_hash(user['Password'], pass1):
                 print("item exists")
                 session['email'] = email
-                return render_template('index.html', fname = user['First Name'], lname = user['Last Name'], email=session['email'])
+                return render_template('home.html', fname = user['First Name'], lname = user['Last Name'], email=session['email'])
             else:
                 print("item is not existed")
                 flash('Invalid Credentials')
@@ -85,7 +91,18 @@ def logout():
 
 @app.route('/home')
 def home():
+    if 'email' not in session:
+        return render_template('home.html')
+    else:
+        form_add = inputFormAdd()
+        if request.method=="POST":
+            can_teach = form_add.can_teach.data
+            to_learn = form_add.to_learn.data
+            if request.method=="POST":
+                add_collection.insert_one({'Teach': can_teach, 'Learn': to_learn})
+                return redirect(url_for('home'))
     return render_template('home.html')
+
 
 @app.route('/about')
 def about():
