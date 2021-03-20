@@ -1,6 +1,9 @@
 .heading {
   font-family: "Montserrat", sans-serif;
-  color: rgb(82, 93, 151);
+  color: rgb(78, 83, 116);
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
 }
 .text-small {
   font-size: 0.9rem !important;
@@ -16,7 +19,8 @@ h5 {
   font-family: "Quicksand", sans-serif;
 }
 p {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
   color: #555;
   padding-top: 20px;
 }
@@ -48,6 +52,7 @@ ul {
 a {
   text-decoration: none;
   color: rgb(90, 93, 144);
+  font-weight: 700;
 }
 
 li {
@@ -66,6 +71,9 @@ li {
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: 0.15em; /* Adjust as needed */
   animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 50px;
 }
 
 /* The typing effect */
@@ -171,9 +179,8 @@ input {
   padding-right: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: rgb(90, 94, 124);
+  background-color: rgb(78, 83, 116);
   font-family: "Quicksand", sans-serif;
-  box-shadow: 5px 5px 9px rgb(78, 83, 116);
 }
 
 .container {
@@ -190,7 +197,6 @@ button {
   padding-bottom: 10px;
   background-color: rgb(78, 83, 116);
   font-family: "Quicksand", sans-serif;
-  box-shadow: 5px 5px 9px rgb(90, 94, 124);
 }
 .image {
   margin-left: 100px;
