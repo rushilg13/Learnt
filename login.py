@@ -27,6 +27,10 @@ client = pymongo.MongoClient(CONNECTION_STRING)
 db = client.get_database('Learnt!')
 user_collection = pymongo.collection.Collection(db, 'Users')
 
+@app.route('/')
+def landing():
+    return render_template('index.html')
+
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
     form = inputForm()
@@ -77,7 +81,7 @@ def logout():
 
 @app.route('/home')
 def home():
-    return render_template('index.html')
+    return render_template('home.html')
 
 @app.route('/about')
 def about():
