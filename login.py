@@ -22,8 +22,8 @@ class inputFormlogin(Form):
     sub = SubmitField('Login')
 
 class inputFormAdd(Form):
-    to_learn = SelectMultipleField('to_learn', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')], validators=[DataRequired()])
-    can_teach = SelectMultipleField('can_teach', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')], validators=[DataRequired()])
+    to_learn = SelectMultipleField('to_learn', choices=[('Frontend', 'Frontend'), ('Backend', 'Backend'), ('App Development', 'App Devlopment'), ('Blockchain', 'Blockchain'), ('Design', 'Design'), ('Machine Learning', 'Machine Learning'), ('Artificial Intelligence', 'Artificial Intelligence')], validators=[DataRequired()])
+    can_teach = SelectMultipleField('can_teach', choices=[('Frontend', 'Frontend'), ('Backend', 'Backend'), ('App Development', 'App Devlopment'), ('Blockchain', 'Blockchain'), ('Design', 'Design'), ('Machine Learning', 'Machine Learning'), ('Artificial Intelligence', 'Artificial Intelligence')], validators=[DataRequired()])
     sub = SubmitField('Add')
 
 db_password = input("Password for database is:")
@@ -65,6 +65,7 @@ def signup():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    form_add = inputFormAdd()
     form_login = inputFormlogin()
     if request.method=="POST":
         email = form_login.email.data
@@ -74,7 +75,7 @@ def login():
             if check_password_hash(user['Password'], pass1):
                 print("item exists")
                 session['email'] = email
-                return render_template('home.html', fname = user['First Name'], lname = user['Last Name'], email=session['email'])
+                return render_template('home.html', fname = user['First Name'], lname = user['Last Name'], email=session['email'], form_add=form_add)
             else:
                 print("item is not existed")
                 flash('Invalid Credentials')
@@ -89,35 +90,40 @@ def logout():
         session.pop('email', None)
     return redirect(url_for('home'))
 
-@app.route('/home')
+@app.route('/home', methods=['POST', 'GET'])
 def home():
     if 'email' not in session:
         cursor = add_collection.find()
+        if request.method=="POST":
+            teach = request.form.getlist("teach")
+            learn = request.form.getlist("learn")
+            # for i in cursor:
+            #     print(i['Learn'], teach)
+            #     if((i['Learn'] in teach) or (i['Teach'] in learn)):
+            #         return render_template('home.html', i = i)
         return render_template('home.html', cursor=cursor)
     else:
         form_add = inputFormAdd()
+        cursor = add_collection.find()
         if request.method=="POST":
             can_teach = form_add.can_teach.data
             to_learn = form_add.to_learn.data
-            user = user_collection.find_one({"Email":email})
+            teach = request.form.getlist("teach")
+            learn = request.form.getlist("learn")
+            print(teach)
+            print(learn)
+            print(can_teach, to_learn)
+            user = user_collection.find_one({"Email":session['email']})
             if request.method=="POST":
-                add_collection.insert_one({'Teach': can_teach, 'Learn': to_learn, 'Email':email, 'First_Name': user['First Name'], 'Last_Name': user['Last Name']})
+                add_collection.insert_one({'Teach': can_teach[0], 'Learn': to_learn[0], 'Email':session['email'], 'First_Name': user['First Name'], 'Last_Name': user['Last Name']})
                 return redirect(url_for('home'))
-    return render_template('home.html')
+    return render_template('home.html', form_add=form_add, cursor=cursor)
 
 
 @app.route('/about')
 def about():
     return render_template('about.html')
 
-
-@app.route('/profile')
-def profile():
-    if 'email' in session:
-        user = user_collection.find_one({"Email":session['email']})
-        details = add_collection.find({"Email":session['email']})
-        print(user['First Name'], user['Last Name'])
-    return render_template('profile.html', fname = user['First Name'], lname = user['Last Name'], email = user['Email'], details=details)
 
 if __name__ == "__main__":
     app.run(debug=True)

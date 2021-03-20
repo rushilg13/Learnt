@@ -17,14 +17,19 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Quicksand&display=swap"
       rel="stylesheet"
     />
+<<<<<<< HEAD
     <link rel="shortcut icon" type="image/jpg" href="../static/blue.jpg"/>
     <link type="text/css" rel="stylesheet" href="../static/css/home.css"/>
+=======
+    <link rel="shortcut icon" type="image/jpg" href="../static/img/logo.svg"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/index.css"/>
+>>>>>>> da7b4fefcb0a571a342e59e082d6062fafeac243
 </head>
 
 <body>
       <nav class="navbar">
           <div>
-              <h3 class="heading">MatchEd.</h3>
+            <img class="imgabout image-logo" src='../static/img/logo.svg' alt="Logo" />
           </div>
           <div class="midnav">
               <ul>
@@ -50,43 +55,50 @@
           </div>
           <div>
               <a href={{url_for('logout')}}>
+<<<<<<< HEAD
                <!--<img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/> -->
+=======
+                <!-- <img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/> -->
+>>>>>>> da7b4fefcb0a571a342e59e082d6062fafeac243
             </a>
           </div>
       </nav>
         <div class="container">
           <div class="cont1">
-              <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/iMac 1.png' alt="some aesthetic shit" /><br><br>
+            <form action="{{ url_for('home') }}" method="POST">
+              <!-- <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/iMac 1.png' alt="some aesthetic shit" /><br><br> -->
               <h4 class="heading">What I want to learn</h4><br>
-              <input type="checkbox" id="design" name="design" value="design">
+              <input type="checkbox" id="design" name="learn" value="Design">
                 <label for="design">Design</label>
-                <input type="checkbox" id="ml" name="ml" value="ml">
+                <input type="checkbox" id="ml" name="learn" value="Machine Learning">
                 <label for="design">Machine Learning</label><br>
-                <input type="checkbox" id="ai" name="ai" value="ai">
+                <input type="checkbox" id="ai" name="learn" value="Artificial Intelligence">
                 <label for="ai">Artificial Intelligence</label>
-                <input type="checkbox" id="crypto" name="crypto" value="crypto">
+                <input type="checkbox" id="crypto" name="learn" value="Blockchain">
                 <label for="crypto">Blockchain</label><br>
-                <input type="checkbox" id="frontend" name="frontend" value="frontend">
+                <input type="checkbox" id="frontend" name="learn" value="Frontend">
                 <label for="Frontend">Frontend</label>
-                <input type="checkbox" id="backend" name="backend" value="backend">
+                <input type="checkbox" id="backend" name="learn" value="Backend">
                 <label for="backend">Backend</label>
-                <input type="checkbox" id="app" name="app" value="app">
+                <input type="checkbox" id="app" name="learn" value="App Devlopment">
                 <label for="app">App Dev</label><br><br><br>
                 <h4 class="heading">What I can teach</h4><br>
-              <input type="checkbox" id="design" name="design" value="design">
+              <input type="checkbox" id="design" name="teach" value="Design">
                 <label for="design">Design</label>
-                <input type="checkbox" id="ml" name="ml" value="ml">
+                <input type="checkbox" id="ml" name="teach" value="Machine Learning">
                 <label for="design">Machine Learning</label><br>
-                <input type="checkbox" id="ai" name="ai" value="ai">
+                <input type="checkbox" id="ai" name="teach" value="Artificial Intelligence">
                 <label for="ai">Artificial Intelligence</label>
-                <input type="checkbox" id="crypto" name="crypto" value="crypto">
+                <input type="checkbox" id="crypto" name="teach" value="Blockchain">
                 <label for="crypto">Blockchain</label><br>
-                <input type="checkbox" id="frontend" name="frontend" value="frontend">
+                <input type="checkbox" id="frontend" name="teach" value="Frontend">
                 <label for="Frontend">Frontend</label>
-                <input type="checkbox" id="backend" name="backend" value="backend">
+                <input type="checkbox" id="backend" name="teach" value="Backend">
                 <label for="backend">Backend</label>
-                <input type="checkbox" id="app" name="app" value="app">
+                <input type="checkbox" id="app" name="teach" value="App Devlopment">
                 <label for="app">App Dev</label>
+                <input type="submit">
+            </form>
             </div>
               <div class="cont2">
                   {% if 'email' in session %}
@@ -101,7 +113,9 @@
                   </form>
                   {% endif %}
                   <br><br>
+
                   <h4 class="heading">Your Matches</h4><br><br>
+<<<<<<< HEAD
                   <div class="boxdiv2">
                           <br>
                           <br>
@@ -122,11 +136,36 @@
                   </div>
                   <br>
                   {% endfor %}
+=======
+
+                <div>
+                    <br><br>
+                    {% for post in cursor %}
+                        <div>
+                            <div class="boxdiv2" style="width: 480px;">
+                                Posted by : {{post['First_Name']}} {{post['Last_Name']}} <br>
+                                Can Teach : {{post['Teach']}} <br>
+                                Wants to Learn : {{post['Learn']}} <br>
+                                Email : {{post['Email']}} <br><br/>
+                                <div style="margin-left: 80px;">
+                                <br><br>
+                                <a href= mailto:{{post['Email']}} ><button class="btnlogin">Send Email</button></a>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <br>
+                    {% endfor %}
+>>>>>>> da7b4fefcb0a571a342e59e082d6062fafeac243
               </div>
             <div class="cont3">
-                <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/Headphones 1 .png' alt="some aesthetic shit" />
+                <!-- <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/Headphones 1 .png' alt="some aesthetic shit" /> -->
                 <br><br><br>
+<<<<<<< HEAD
             <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/HDD 1.png' alt="some aesthetic shit" /> 
+=======
+            <!-- <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/HDD 1.png' alt="some aesthetic shit" /> -->
+>>>>>>> da7b4fefcb0a571a342e59e082d6062fafeac243
         </div>
             </div>
           </div>
