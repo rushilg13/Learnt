@@ -83,6 +83,7 @@ def home():
 def about():
     return render_template('about.html')
 
+
 @app.route('/profile')
 def profile():
     if 'email' in session:

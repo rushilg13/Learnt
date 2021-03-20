@@ -1,0 +1,237 @@
+.heading {
+  font-family: "Montserrat", sans-serif;
+  color: rgb(82, 93, 151);
+}
+.text-small {
+  font-size: 0.9rem !important;
+}
+.whitebtn {
+  background-color: #f1f1f1;
+  color: rgb(82, 93, 151);
+  font-family: "Montserrat", sans-serif;
+  border-radius: 100px;
+}
+
+h5 {
+  font-family: "Quicksand", sans-serif;
+}
+p {
+  font-family: "Quicksand", sans-serif;
+  color: #555;
+  padding-top: 20px;
+}
+.f1 {
+  padding-top: 10px;
+  padding-left: 100px;
+}
+.footer {
+  background-color: rgb(78, 83, 116);
+  padding-top: 20px;
+  display: flex;
+  color: #f1f1f1;
+  font-family: "Montserrat", sans-serif;
+}
+
+.midnav {
+  margin: 10px;
+  padding: 10px;
+  background-image: linear-gradient(white, white);
+  border-radius: 20px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(90, 93, 144);
+}
+
+li {
+  display: inline;
+  padding: 80px;
+  list-style: none;
+}
+
+.image-hdd {
+  height: 200px;
+}
+.typewriter {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid rgb(212, 198, 172); /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em; /* Adjust as needed */
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    size: 25px;
+    border-color: rgb(80, 79, 77);
+  }
+}
+.change_content1:after {
+  content: "";
+  background-color: rgb(164, 168, 247);
+  font-size: 25px;
+  animation: changetext1 5s linear infinite alternate;
+  color: white;
+}
+.change_content2:after {
+  background-color: rgb(179, 183, 250);
+  content: "";
+  font-size: 25px;
+  animation: changetext2 5s linear infinite alternate;
+  color: rgb(192, 177, 177);
+  color: white;
+}
+
+@keyframes changetext1 {
+  0% {
+    content: "Machine Learning";
+  }
+  25% {
+    content: "Artificial Intelligence";
+  }
+  50% {
+    content: "Data Visualisation";
+  }
+  75% {
+    content: "Design";
+  }
+  100% {
+    content: "REST Api";
+  }
+}
+@keyframes changetext2 {
+  0% {
+    content: "CSS";
+  }
+  25% {
+    content: "Machine Learning";
+  }
+  50% {
+    content: "Python";
+  }
+  75% {
+    content: "Cloud";
+  }
+  100% {
+    content: "Artificial Intelligence";
+  }
+}
+
+body {
+  background-image: url("../img/bg.png");
+  min-height: 110vh;
+}
+
+.empty {
+  padding-left: 400px;
+}
+
+.navbar {
+  padding-top: 25px;
+  font-family: "Quicksand", sans-serif;
+  display: flex;
+}
+input {
+  border-style: none;
+  border-radius: 9px;
+  padding: 10px;
+  padding-left: 80px;
+  padding-right: 80px;
+  font-family: "Quicksand", sans-serif;
+}
+
+.btnlogin {
+  color: #f1f1f1;
+  border-style: none;
+  border-radius: 9px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(90, 94, 124);
+  font-family: "Quicksand", sans-serif;
+  box-shadow: 5px 5px 9px rgb(78, 83, 116);
+}
+
+.container {
+  padding-top: 125px;
+}
+
+button {
+  color: #f1f1f1;
+  border-style: none;
+  border-radius: 9px;
+  padding-left: 130px;
+  padding-right: 130px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(78, 83, 116);
+  font-family: "Quicksand", sans-serif;
+  box-shadow: 5px 5px 9px rgb(90, 94, 124);
+}
+.image {
+  margin-left: 100px;
+  border-radius: 100%;
+  height: 300px;
+  width: 500px;
+}
+
+.buttonlink {
+  color: rgb(245, 241, 241);
+  font-family: "Quicksand", sans-serif;
+}
+.buttonlink:hover {
+  color: rgb(241, 239, 239);
+  text-decoration: none;
+}
+.icon {
+  padding: 10px;
+  border-radius: 100px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+.icon:hover {
+  padding: 20px;
+  border-radius: 50px;
+  margin-left: 20px;
+}
+
+select {
+  padding: 5px 5px;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  color: rgb(82, 93, 151);
+}
+.buttoncancel {
+  background-color: #555;
+}
+
+.italichead {
+  font-style: italic;
+  color: #555;
+}
