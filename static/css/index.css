@@ -36,7 +36,7 @@ p {
   margin: 10px;
   padding: 10px;
   background-image: linear-gradient(white, white);
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 ul {
@@ -52,7 +52,7 @@ a {
 
 li {
   display: inline;
-  padding: 80px;
+  padding: 40px;
   list-style: none;
 }
 
