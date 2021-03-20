@@ -125,13 +125,5 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/profile')
-def profile():
-    if 'email' in session:
-        user = user_collection.find_one({"Email":session['email']})
-        details = add_collection.find({"Email":session['email']})
-        print(user['First Name'], user['Last Name'])
-    return render_template('profile.html', fname = user['First Name'], lname = user['Last Name'], email = user['Email'], details=details)
-
 if __name__ == "__main__":
     app.run(debug=True)

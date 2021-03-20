@@ -17,7 +17,7 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Quicksand&display=swap"
       rel="stylesheet"
     />
-    <link rel="shortcut icon" type="image/jpg" href="../static/blue.jpg"/>
+    <link rel="shortcut icon" type="image/jpg" href="../static/img/logo.svg"/>
     <link type="text/css" rel="stylesheet" href="../static/css/index.css"/>
 </head>
 
@@ -104,27 +104,27 @@
                   </form>
                   {% endif %}
                   <br><br>
+
                   <h4 class="heading">Your Matches</h4><br><br>
-                  <div class="boxdiv2">
-                          <br>
-                          <br>
-                          {% for post in cursor %}
-                          <div>
-                                    <div class="boxdiv2" style="width: 480px;">
-                                          Posted by : {{post['First_Name']}} {{post['Last_Name']}} <br>
-                                            Can Teach : {{post['Teach']}} <br>
-                                            Wants to Learn : {{post['Learn']}} <br>
-                                          Email : {{post['Email']}} <br><br/>
-                                          <div style="margin-left: 80px;">
-                                              <br><br><br><br>
-                                            <!-- <img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/><br><br> -->
-                                            <a href= mailto:{{post['Email']}} ><button class="btnlogin">Send Email</button></a>
-                                       </div>
-                                    </div>
+
+                <div>
+                    <br><br>
+                    {% for post in cursor %}
+                        <div>
+                            <div class="boxdiv2" style="width: 480px;">
+                                Posted by : {{post['First_Name']}} {{post['Last_Name']}} <br>
+                                Can Teach : {{post['Teach']}} <br>
+                                Wants to Learn : {{post['Learn']}} <br>
+                                Email : {{post['Email']}} <br><br/>
+                                <div style="margin-left: 80px;">
+                                <br><br>
+                                <a href= mailto:{{post['Email']}} ><button class="btnlogin">Send Email</button></a>
+                                </div>
+                            </div>
                         </div>
-                  </div>
-                  <br>
-                  {% endfor %}
+                </div>
+                <br>
+                    {% endfor %}
               </div>
             <div class="cont3">
                 <!-- <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/Headphones 1 .png' alt="some aesthetic shit" /> -->
