@@ -31,6 +31,10 @@ user_collection = pymongo.collection.Collection(db, 'Users')
 def landing():
     return render_template('index.html')
 
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
     form = inputForm()

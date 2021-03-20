@@ -32,17 +32,19 @@
                       <a href="/">Home</a>
                   </li>
                   <li>
-                      <a href="/contact.html">Contact</a>
+                      <a href="/contact">Contact</a>
                   </li>
                   <li>
-                      <a href="/about.html">About</a>
+                      <a href="/about">About</a>
                   </li>
                 </ul>
           </div>
           <div>
+              <a href={{url_for('login')}}>
               <button class="btnlogin">
                   Login
               </button>
+            </a>
           </div>
       </nav>
         <div class="container">
@@ -56,7 +58,7 @@
                 for people who wants to learn new skills and teach 
                 a skill they are familiar with in return.
                 </p><br><br>
-                <button>Find me a match</button>
+                <a href={{url_for('home')}}><button>Find me a match</button></a>
             </div>
             <div class="col-lg-7">
             <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image" src='../static/img/iMac 1.png' alt="some aesthetic shit" />
