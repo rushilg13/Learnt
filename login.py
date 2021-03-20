@@ -92,14 +92,16 @@ def logout():
 @app.route('/home')
 def home():
     if 'email' not in session:
-        return render_template('home.html')
+        cursor = add_collection.find()
+        return render_template('home.html', cursor=cursor)
     else:
         form_add = inputFormAdd()
         if request.method=="POST":
             can_teach = form_add.can_teach.data
             to_learn = form_add.to_learn.data
+            user = user_collection.find_one({"Email":email})
             if request.method=="POST":
-                add_collection.insert_one({'Teach': can_teach, 'Learn': to_learn})
+                add_collection.insert_one({'Teach': can_teach, 'Learn': to_learn, 'Email':email, 'First_Name': user['First Name'], 'Last_Name': user['Last Name']})
                 return redirect(url_for('home'))
     return render_template('home.html')
 
