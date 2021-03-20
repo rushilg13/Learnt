@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_wtf import Form
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, validators, SubmitField
+from wtforms import StringField, PasswordField, validators, SubmitField, SelectMultipleField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 from wtforms.fields.html5 import EmailField
 from flask_pymongo import pymongo
@@ -22,8 +22,8 @@ class inputFormlogin(Form):
     sub = SubmitField('Login')
 
 class inputFormAdd(Form):
-    to_learn = StringField('to_learn', validators=[DataRequired()])
-    can_teach = StringField('can_teach', validators=[DataRequired()])
+    to_learn = SelectMultipleField('to_learn', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')], validators=[DataRequired()])
+    can_teach = SelectMultipleField('can_teach', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')], validators=[DataRequired()])
     sub = SubmitField('Add')
 
 db_password = input("Password for database is:")
@@ -115,8 +115,9 @@ def about():
 def profile():
     if 'email' in session:
         user = user_collection.find_one({"Email":session['email']})
+        details = add_collection.find({"Email":session['email']})
         print(user['First Name'], user['Last Name'])
-    return render_template('profile.html')
+    return render_template('profile.html', fname = user['First Name'], lname = user['Last Name'], email = user['Email'], details=details)
 
 if __name__ == "__main__":
     app.run(debug=True)

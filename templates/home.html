@@ -32,39 +32,36 @@
                       <a href="/">Home</a>
                   </li>
                   <li>
-                      <a href="/contact.html">Contact</a>
+                      <a href="/contact">Contact</a>
                   </li>
                   <li>
-                      <a href="/about.html">About</a>
+                      <a href="/about">About</a>
                   </li>
                 </ul>
           </div>
           <div>
+              <a href={{url_for('login')}}>
               <button class="btnlogin">
                   Login
               </button>
+            </a>
           </div>
       </nav>
-      {% for post in cursor %}
-        {{post}}
-      {% endfor %}
         <div class="container">
-          <div class="row align-items-center ">
-          <div class="col-lg-5">
-              <h1 class="font-weight-bold heading ">I want to learn</h1>
-              <span class="heading change_content1 typewriter"></span>
-              <h1 class="font-weight-bold heading">I can teach</h1>
-              <span class="heading change_content2 typewriter"></span><br><br>
-              <p>Blah is a free platform that acts a matchmaker 
-                for people who wants to learn new skills and teach 
-                a skill they are familiar with in return.
-                </p><br><br>
-                <button>Find me a match</button>
+          <div class="con1">
+              <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image" src='../static/img/iMac 1.png' alt="some aesthetic shit" /><br><br>
+              <h4 class="heading">What I want to learn</h4><br><br>
+                
             </div>
-            <div class="col-lg-7">
-            <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image" src='../static/img/iMac 1.png' alt="some aesthetic shit" />
+              <div class="cont2">
+                  <form>
+                      <input placeholder="hello"/>
+                  </form>
+              </div>
+            <div class="cont3">
             <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/HDD 1.png' alt="some aesthetic shit" />
         </div>
+            </div>
           </div>
         </div>
         <div class="footer">
