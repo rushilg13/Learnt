@@ -154,6 +154,8 @@ li {
 
 body {
   background-image: url("../img/bg.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
   min-height: 110vh;
 }
 
