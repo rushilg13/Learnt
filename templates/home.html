@@ -17,13 +17,8 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Quicksand&display=swap"
       rel="stylesheet"
     />
-<<<<<<< HEAD
-    <link rel="shortcut icon" type="image/jpg" href="../static/blue.jpg"/>
-    <link type="text/css" rel="stylesheet" href="../static/css/home.css"/>
-=======
     <link rel="shortcut icon" type="image/jpg" href="../static/img/logo.svg"/>
-    <link type="text/css" rel="stylesheet" href="../static/css/index.css"/>
->>>>>>> da7b4fefcb0a571a342e59e082d6062fafeac243
+    <link type="text/css" rel="stylesheet" href="../static/css/home.css"/>
 </head>
 
 <body>
@@ -55,18 +50,14 @@
           </div>
           <div>
               <a href={{url_for('logout')}}>
-<<<<<<< HEAD
-               <!--<img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/> -->
-=======
                 <!-- <img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/> -->
->>>>>>> da7b4fefcb0a571a342e59e082d6062fafeac243
             </a>
           </div>
       </nav>
         <div class="container">
           <div class="cont1">
             <form action="{{ url_for('home') }}" method="POST">
-              <!-- <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/iMac 1.png' alt="some aesthetic shit" /><br><br> -->
+              <img class="imgabout animate_animated animatefadeIn animate_delay-1s image-hdd" src='../static/img/iMac 1.png' alt="some aesthetic shit" /><br><br>
               <h4 class="heading">What I want to learn</h4><br>
               <input type="checkbox" id="design" name="learn" value="Design">
                 <label for="design">Design</label>
@@ -97,6 +88,7 @@
                 <label for="backend">Backend</label>
                 <input type="checkbox" id="app" name="teach" value="App Devlopment">
                 <label for="app">App Dev</label>
+                <br>
                 <input type="submit">
             </form>
             </div>
@@ -115,28 +107,6 @@
                   <br><br>
 
                   <h4 class="heading">Your Matches</h4><br><br>
-<<<<<<< HEAD
-                  <div class="boxdiv2">
-                          <br>
-                          <br>
-                          {% for post in cursor %}
-                          <div>
-                                    <div class="boxdiv2" style="width: 480px;">
-                                          Posted by : {{post['First_Name']}} {{post['Last_Name']}} <br>
-                                            Can Teach : {{post['Teach']}} <br>
-                                            Wants to Learn : {{post['Learn']}} <br>
-                                          Email : {{post['Email']}} <br><br/>
-                                          <div style="margin-left: 80px;">
-                                              <br><br><br><br>
-                                            <!-- <img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/><br><br> -->
-                                            <a href= mailto:{{post['Email']}} ><button class="btnlogin">Send Email</button></a>
-                                       </div>
-                                    </div>
-                        </div>
-                  </div>
-                  <br>
-                  {% endfor %}
-=======
 
                 <div>
                     <br><br>
@@ -156,16 +126,11 @@
                 </div>
                 <br>
                     {% endfor %}
->>>>>>> da7b4fefcb0a571a342e59e082d6062fafeac243
               </div>
             <div class="cont3">
-                <!-- <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/Headphones 1 .png' alt="some aesthetic shit" /> -->
+                <img class="imgabout animate_animated animatefadeIn animate_delay-1s image-hdd" src='../static/img/Headphones 1 .png' alt="some aesthetic shit" />
                 <br><br><br>
-<<<<<<< HEAD
-            <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/HDD 1.png' alt="some aesthetic shit" /> 
-=======
-            <!-- <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/HDD 1.png' alt="some aesthetic shit" /> -->
->>>>>>> da7b4fefcb0a571a342e59e082d6062fafeac243
+            <img class="imgabout animate_animated animatefadeIn animate_delay-1s image-hdd" src='../static/img/HDD 1.png' alt="some aesthetic shit" /> 
         </div>
             </div>
           </div>
