@@ -65,6 +65,7 @@ def signup():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    form_add = inputFormAdd()
     form_login = inputFormlogin()
     if request.method=="POST":
         email = form_login.email.data
@@ -74,7 +75,7 @@ def login():
             if check_password_hash(user['Password'], pass1):
                 print("item exists")
                 session['email'] = email
-                return render_template('home.html', fname = user['First Name'], lname = user['Last Name'], email=session['email'])
+                return render_template('home.html', fname = user['First Name'], lname = user['Last Name'], email=session['email'], form_add=form_add)
             else:
                 print("item is not existed")
                 flash('Invalid Credentials')

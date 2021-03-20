@@ -37,6 +37,15 @@
                   <li>
                       <a href="/about">About</a>
                   </li>
+                {% if 'email' in session %}
+                    <li>
+                        <a href="/logout">Logout</a>
+                    </li>
+                {% else %}
+                <li>
+                    <a href="/login">Login</a>
+                </li>
+                {% endif %}
                 </ul>
           </div>
           <div>
@@ -80,6 +89,7 @@
                 <label for="app">App Dev</label>
             </div>
               <div class="cont2">
+                  {% if 'email' in session %}
                 <form action="{{ url_for('home') }}" method="POST" class="boxdiv">
                     {{ form_add.csrf_token }}
                     <h4 class="heading">I want to learn</h4>
@@ -89,28 +99,26 @@
                     {{ form_add.can_teach }}
                     {{ form_add.sub }}
                   </form>
+                  {% endif %}
                   <br><br>
                   <h4 class="heading">Your Matches</h4><br><br>
                   <div class="boxdiv2">
-                      <div>
                           <br>
                           <br>
                           {% for post in cursor %}
                           <div>
                                     <div class="boxdiv2" style="width: 480px;">
                                           Posted by : {{post['First_Name']}} {{post['Last_Name']}} <br>
-                                             Teach : {{post['Teach']}} <br>
-                                             Learn : {{post['Learn']}} <br>
-                                          Email : {{post['Email']}}
+                                            Can Teach : {{post['Teach']}} <br>
+                                            Wants to Learn : {{post['Learn']}} <br>
+                                          Email : {{post['Email']}} <br><br/>
+                                          <div style="margin-left: 80px;">
+                                              <br><br><br><br>
+                                            <!-- <img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/><br><br> -->
+                                            <a href= mailto:{{post['Email']}} ><button class="btnlogin">Send Email</button></a>
+                                       </div>
                                     </div>
-                            <br>
                         </div>
-                        <br>
-                          <div>
-                                <!-- <img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/><br><br> -->
-                                <a href= mailto:{{post['Email']}} ><button class="btnlogin">Send Email</button></a>
-                           </div>
-                      </div>
                   </div>
                   <br>
                   {% endfor %}
