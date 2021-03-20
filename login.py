@@ -21,16 +21,12 @@ class inputFormlogin(Form):
     pass1 = PasswordField('pass1', validators=[DataRequired()])
     sub = SubmitField('Login')
 
-<<<<<<< HEAD
-db_password = "pizza"
-=======
 class inputFormAdd(Form):
     to_learn = SelectMultipleField('to_learn', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')], validators=[DataRequired()])
     can_teach = SelectMultipleField('can_teach', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')], validators=[DataRequired()])
     sub = SubmitField('Add')
 
 db_password = input("Password for database is:")
->>>>>>> 4646c4667481c61af56eb173024f08c32b012419
 CONNECTION_STRING = f"mongodb+srv://VIT_Admin:{db_password}@vitdiaries.tpuku.mongodb.net/CouponShare?retryWrites=true&w=majority"
 client = pymongo.MongoClient(CONNECTION_STRING)
 db = client.get_database('Learnt!')
