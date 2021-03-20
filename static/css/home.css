@@ -1,3 +1,10 @@
+@charset "utf-8";
+
+html,
+body {
+  height: 100%;
+}
+
 .heading {
   font-family: "Montserrat", sans-serif;
   color: rgb(78, 83, 116);
@@ -5,9 +12,11 @@
   font-style: normal;
   font-weight: 700;
 }
+
 .text-small {
   font-size: 0.9rem !important;
 }
+
 .whitebtn {
   background-color: #f1f1f1;
   color: rgb(82, 93, 151);
@@ -65,91 +74,10 @@ li {
   width: 260px;
   height: 239px;
 }
-.typewriter {
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: 0.15em solid rgb(212, 198, 172); /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: 0.15em; /* Adjust as needed */
-  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 50px;
-}
 
-/* The typing effect */
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent;
-  }
-  50% {
-    size: 25px;
-    border-color: rgb(80, 79, 77);
-  }
-}
-.change_content1:after {
-  content: "";
-  background-color: rgb(164, 168, 247);
-  font-size: 25px;
-  animation: changetext1 5s linear infinite alternate;
-  color: white;
-}
-.change_content2:after {
-  background-color: rgb(179, 183, 250);
-  content: "";
-  font-size: 25px;
-  animation: changetext2 5s linear infinite alternate;
-  color: rgb(192, 177, 177);
-  color: white;
-}
 .highlighted-heading {
   background-color: rgb(179, 183, 250);
   color: rgb(255, 255, 255);
-}
-@keyframes changetext1 {
-  0% {
-    content: "Machine Learning";
-  }
-  25% {
-    content: "Artificial Intelligence";
-  }
-  50% {
-    content: "Data Visualisation";
-  }
-  75% {
-    content: "Design";
-  }
-  100% {
-    content: "REST API";
-  }
-}
-@keyframes changetext2 {
-  0% {
-    content: "CSS";
-  }
-  25% {
-    content: "Machine Learning";
-  }
-  50% {
-    content: "Python";
-  }
-  75% {
-    content: "Cloud";
-  }
-  100% {
-    content: "Artificial Intelligence";
-  }
 }
 
 body {
@@ -219,6 +147,7 @@ button {
   background-color: rgb(78, 83, 116);
   font-family: "Quicksand", sans-serif;
 }
+
 .image {
   margin-left: 100px;
   border-radius: 100%;
@@ -241,18 +170,6 @@ button {
   height: 100px;
 }
 
-.icon {
-  padding: 10px;
-  border-radius: 100px;
-  margin-left: 20px;
-  margin-bottom: 20px;
-}
-.icon:hover {
-  padding: 20px;
-  border-radius: 50px;
-  margin-left: 20px;
-}
-
 select {
   font-size: 1.2rem;
   padding: 10px 100px;
@@ -264,11 +181,6 @@ select {
 }
 .buttoncancel {
   background-color: #555;
-}
-
-.italichead {
-  font-style: italic;
-  color: #555;
 }
 
 .cont1 {
