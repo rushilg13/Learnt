@@ -96,6 +96,7 @@ def home():
         return render_template('home.html', cursor=cursor)
     else:
         form_add = inputFormAdd()
+        cursor = add_collection.find()
         if request.method=="POST":
             can_teach = form_add.can_teach.data
             to_learn = form_add.to_learn.data
@@ -104,7 +105,7 @@ def home():
             if request.method=="POST":
                 add_collection.insert_one({'Teach': can_teach[0], 'Learn': to_learn[0], 'Email':session['email'], 'First_Name': user['First Name'], 'Last_Name': user['Last Name']})
                 return redirect(url_for('home'))
-    return render_template('home.html', form_add=form_add)
+    return render_template('home.html', form_add=form_add, cursor=cursor)
 
 
 @app.route('/about')

@@ -92,31 +92,28 @@
                   <br><br>
                   <h4 class="heading">Your Matches</h4><br><br>
                   <div class="boxdiv2">
-                      <div style="padding-left: 100px;">
-                          <h5 class="heading">Name1</h5>
+                      <div>
                           <br>
-                          <p>Role and current status</p>
                           <br>
-                          <div style="display: flex;">
-                            <div>
-                                <h4 class="highlighted-heading">Wants To learn</h5>
-                                
-                                <h5 class="heading">Topic</h5>
-                            </div>
-                            <div>.   .</div>
-                            <div>
-                                <h4 class="highlighted-heading">Teaches</h5>
-                                
-                                <h5 class="heading">Topic</h5>
-                            </div>
+                          {% for post in cursor %}
+                          <div>
+                                    <div class="boxdiv2" style="width: 480px;">
+                                          Posted by : {{post['First_Name']}} {{post['Last_Name']}} <br>
+                                             Teach : {{post['Teach']}} <br>
+                                             Learn : {{post['Learn']}} <br>
+                                          Email : {{post['Email']}}
+                                    </div>
                             <br>
                         </div>
-                                                    <div>
+                        <br>
+                          <div>
                                 <!-- <img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/><br><br> -->
-                                <button class="btnlogin">Connect</button>
+                                <a href= mailto:{{post['Email']}} ><button class="btnlogin">Send Email</button></a>
                            </div>
                       </div>
                   </div>
+                  <br>
+                  {% endfor %}
               </div>
             <div class="cont3">
                 <!-- <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/Headphones 1 .png' alt="some aesthetic shit" /> -->
