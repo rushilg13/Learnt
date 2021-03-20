@@ -1,1 +1,83 @@
-Contact Page
+<html lang="en">
+<head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Quicksand&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" type="image/jpg" href="../static/blue.jpg"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/index.css"/>
+</head>
+
+<body>
+      <nav class="navbar">
+          <div>
+              <img class="imgabout image-logo" src='' alt="Logo" />
+          </div>
+          <div class="midnav">
+              <ul>
+                  <li>
+                      <a href="/">Home</a>
+                  </li>
+                  <li>
+                      <a href="/contact">Contact</a>
+                  </li>
+                  <li>
+                      <a href="/about">About</a>
+                  </li>
+                </ul>
+          </div>
+          <div>
+              <a href={{url_for('login')}}>
+              <button class="btnlogin">
+                  Login
+              </button>
+            </a>
+          </div>
+      </nav>
+        <div class="container">
+          <div class="row align-items-center ">
+          <div class="col-lg-5">
+              <p>We are here to help you. Reach out to us anytime at contact@Blah.com<br><br>
+                </p><br><br>
+                <a href="mailto:contact@Blah.com"><button>Send Email</button></a>
+            </div>
+            <div class="col-lg-7">
+            <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image" src='../static/img/iMac 1.png' alt="some aesthetic shit" />
+            <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/HDD 1.png' alt="some aesthetic shit" />
+        </div>
+          </div>
+        </div>
+        <div class="footer">
+            <div class="f1">
+                <h4>About</h4><br>
+                <h5>About us<br><br>Team<br><br>Our purpose and vision</h5>
+            </div>
+            <div class="f1">
+                <h4>Legal</h4><br>
+                <h5>Terms and Conditions<br><br>Privacy Policy<br><br>Offer Terms</h5>
+            </div>
+            <div class="f1">
+                <h4>Contact</h4><br>
+                <h5>Instagram<br><br>Facebook<br><br>Twitter</h5>
+            </div>
+            <div class="f1">
+                <h4>Download App</h4><br>
+                <button class="whitebtn">Download Now</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
