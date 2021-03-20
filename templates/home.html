@@ -41,13 +41,13 @@
           </div>
           <div>
               <a href={{url_for('logout')}}>
-                <img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/>
+                <!-- <img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/> -->
             </a>
           </div>
       </nav>
         <div class="container">
           <div class="cont1">
-              <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/iMac 1.png' alt="some aesthetic shit" /><br><br>
+              <!-- <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/iMac 1.png' alt="some aesthetic shit" /><br><br> -->
               <h4 class="heading">What I want to learn</h4><br>
               <input type="checkbox" id="design" name="design" value="design">
                 <label for="design">Design</label>
@@ -80,38 +80,18 @@
                 <label for="app">App Dev</label>
             </div>
               <div class="cont2">
-                  <form class="boxdiv">
-                      <h4 class="heading">I want to learn</h4>
-                      <select>
-                        <option value="design">Design</option>
-                        <option value="ml">Machine Learning</option>
-                        <option value="ai">Artificial Intelligence</option>
-                        <option value="crypto">Blockchain</option>
-                        <option value="frontend">Frontend</option>
-                        <option value="backend">Backend</option>
-                        <option value="app">App Development</option>
-                      </select>
-                      <br><br>
-                      <h4 class="heading">I can teach</h4>
-                      <select>
-                        <option value="design">Design</option>
-                        <option value="ml">Machine Learning</option>
-                        <option value="ai">Artificial Intelligence</option>
-                        <option value="crypto">Blockchain</option>
-                        <option value="frontend">Frontend</option>
-                        <option value="backend">Backend</option>
-                        <option value="app">App Development</option>
-                      </select>
-                      <br><br>
-                      <button class="btnlogin">Add Post</button>
+                <form action="{{ url_for('home') }}" method="POST" class="boxdiv">
+                    {{ form_add.csrf_token }}
+                    <h4 class="heading">I want to learn</h4>
+                    {{ form_add.to_learn }}
+                    <br>
+                    <h4 class="heading">I can teach</h4>
+                    {{ form_add.can_teach }}
+                    {{ form_add.sub }}
                   </form>
                   <br><br>
                   <h4 class="heading">Your Matches</h4><br><br>
                   <div class="boxdiv2">
-                      <div>
-                           <img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/><br><br>
-                           <button class="btnlogin">Connect</button>
-                      </div>
                       <div style="padding-left: 100px;">
                           <h5 class="heading">Name1</h5>
                           <br>
@@ -129,14 +109,19 @@
                                 
                                 <h5 class="heading">Topic</h5>
                             </div>
+                            <br>
                         </div>
+                                                    <div>
+                                <!-- <img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/><br><br> -->
+                                <button class="btnlogin">Connect</button>
+                           </div>
                       </div>
                   </div>
               </div>
             <div class="cont3">
-                <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/Headphones 1 .png' alt="some aesthetic shit" />
+                <!-- <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/Headphones 1 .png' alt="some aesthetic shit" /> -->
                 <br><br><br>
-            <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/HDD 1.png' alt="some aesthetic shit" />
+            <!-- <img class="imgabout animate__animated animate__fadeIn animate__delay-1s image-hdd" src='../static/img/HDD 1.png' alt="some aesthetic shit" /> -->
         </div>
             </div>
           </div>

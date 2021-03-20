@@ -22,8 +22,8 @@ class inputFormlogin(Form):
     sub = SubmitField('Login')
 
 class inputFormAdd(Form):
-    to_learn = SelectMultipleField('to_learn', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')], validators=[DataRequired()])
-    can_teach = SelectMultipleField('can_teach', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')], validators=[DataRequired()])
+    to_learn = SelectMultipleField('to_learn', choices=[('App Development', 'App Devlopment'), ('Blockchain', 'Blockchain'), ('Design', 'Design'), ('Machine Learning', 'Machine Learning'), ('Artificial Intelligence', 'Artificial Intelligence')], validators=[DataRequired()])
+    can_teach = SelectMultipleField('can_teach', choices=[('App Development', 'App Devlopment'), ('Blockchain', 'Blockchain'), ('Design', 'Design'), ('Machine Learning', 'Machine Learning'), ('Artificial Intelligence', 'Artificial Intelligence')], validators=[DataRequired()])
     sub = SubmitField('Add')
 
 db_password = input("Password for database is:")
@@ -89,7 +89,7 @@ def logout():
         session.pop('email', None)
     return redirect(url_for('home'))
 
-@app.route('/home')
+@app.route('/home', methods=['POST', 'GET'])
 def home():
     if 'email' not in session:
         cursor = add_collection.find()
@@ -99,11 +99,12 @@ def home():
         if request.method=="POST":
             can_teach = form_add.can_teach.data
             to_learn = form_add.to_learn.data
-            user = user_collection.find_one({"Email":email})
+            print(can_teach, to_learn)
+            user = user_collection.find_one({"Email":session['email']})
             if request.method=="POST":
-                add_collection.insert_one({'Teach': can_teach, 'Learn': to_learn, 'Email':email, 'First_Name': user['First Name'], 'Last_Name': user['Last Name']})
+                add_collection.insert_one({'Teach': can_teach[0], 'Learn': to_learn[0], 'Email':session['email'], 'First_Name': user['First Name'], 'Last_Name': user['Last Name']})
                 return redirect(url_for('home'))
-    return render_template('home.html')
+    return render_template('home.html', form_add=form_add)
 
 
 @app.route('/about')
