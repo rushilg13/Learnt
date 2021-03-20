@@ -9,7 +9,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Cant_say'
-
 class inputForm(Form):
     fname = StringField('fname', validators=[DataRequired()])
     lname = StringField('lname', validators=[DataRequired()])
