@@ -58,6 +58,7 @@
           <div class="cont1">
             <form action="{{ url_for('home') }}" method="POST">
               <img class="imgabout animate_animated animatefadeIn animate_delay-1s image-hdd" src='../static/img/iMac 1.png' alt="some aesthetic shit" /><br><br>
+              <p>Hey, {{fname}} {{lname}}</p>
               <h4 class="heading">What I want to learn</h4><br>
               <input type="checkbox" id="design" name="learn" value="Design">
                 <label for="design">Design</label>
@@ -101,15 +102,15 @@
                     <br>
                     <h4 class="heading">I can teach</h4>
                     {{ form_add.can_teach }}
-                    {{ form_add.sub }}
+                    <br/>{{ form_add.sub }}
                   </form>
                   {% endif %}
-                  <br><br>
+                  <br>
 
                   <h4 class="heading">Your Matches</h4><br><br>
 
                 <div>
-                    <br><br>
+                    
                     {% for post in cursor %}
                         <div>
                             <div class="boxdiv2" style="width: 480px;">
