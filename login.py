@@ -58,7 +58,7 @@ def signup():
                 cipher = generate_password_hash(pass1, method='sha256')
                 user_collection.insert_one({'First Name': fname, 'Last Name': lname, 'Email': email, 'Password': cipher})
                 session['email'] = email
-                return render_template('home.html', fname = fname, lname = lname, email=session['email'])
+                return render_template('home.html', fname = fname, lname = lname, email=session['email'], form_add=form_add)
         else:
             return redirect(url_for('home'))
     return render_template("signup.html", form=form)
