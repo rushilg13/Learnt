@@ -43,6 +43,7 @@ def contact():
 
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
+    form_add = inputFormAdd()
     form = inputForm()
     if request.method=="POST":
         fname = form.fname.data
