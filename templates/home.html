@@ -22,11 +22,11 @@
 </head>
 
 <body>
-      <nav class="navbar">
-          <div>
-            <a href={{url_for('landing')}}><img class="imgabout image-logo" src='../static/img/logo.svg' width="225" height="40" alt="Logo" /></a>
+      <nav class="navbar row">
+          <div class="col-lg-4">
+            <a href={{url_for('landing')}}><img style="margin-left: 200px;" src='../static/img/logo.svg' width="225" height="40" alt="Logo" /></a>
           </div>
-          <div class="midnav">
+          <div class="midnav col-lg-5">
               <ul>
                   <li>
                       <a href="/">Home</a>
@@ -48,91 +48,97 @@
                 {% endif %}
                 </ul>
           </div>
-          <div>
-              <a href={{url_for('logout')}}>
-                <img src="../static/img/Headphones 1 .png" alt="dp" class="dpimg"/>
-            </a>
-          </div>
+          <div class="col-lg-3"></div>
       </nav>
-        <div class="container">
-          <div class="cont1">
-            <form action="{{ url_for('home') }}" method="POST">
-              <img class="imgabout animate_animated animatefadeIn animate_delay-1s image-hdd" src='../static/img/iMac 1.png' alt="some aesthetic shit" /><br><br>
+          
+          <div class="row">
+            <div class="col-lg-3" style="margin-left: 200px;">
               <p>Hey, {{fname}} {{lname}}</p>
+              <form action="{{ url_for('home') }}" method="POST">
               <h4 class="heading">What I want to learn</h4><br>
               <input type="checkbox" id="design" name="learn" value="Design">
-                <label for="design">Design</label>
+                <label for="design">Design</label><br>
                 <input type="checkbox" id="ml" name="learn" value="Machine Learning">
                 <label for="design">Machine Learning</label><br>
                 <input type="checkbox" id="ai" name="learn" value="Artificial Intelligence">
-                <label for="ai">Artificial Intelligence</label>
+                <label for="ai">Artificial Intelligence</label><br>
                 <input type="checkbox" id="crypto" name="learn" value="Blockchain">
                 <label for="crypto">Blockchain</label><br>
                 <input type="checkbox" id="frontend" name="learn" value="Frontend">
-                <label for="Frontend">Frontend</label>
+                <label for="Frontend">Frontend</label><br>
                 <input type="checkbox" id="backend" name="learn" value="Backend">
-                <label for="backend">Backend</label>
+                <label for="backend">Backend</label><br>
                 <input type="checkbox" id="app" name="learn" value="App Devlopment">
                 <label for="app">App Dev</label><br><br><br>
                 <h4 class="heading">What I can teach</h4><br>
               <input type="checkbox" id="design" name="teach" value="Design">
-                <label for="design">Design</label>
+                <label for="design">Design</label><br>
                 <input type="checkbox" id="ml" name="teach" value="Machine Learning">
                 <label for="design">Machine Learning</label><br>
                 <input type="checkbox" id="ai" name="teach" value="Artificial Intelligence">
-                <label for="ai">Artificial Intelligence</label>
+                <label for="ai">Artificial Intelligence</label><br>
                 <input type="checkbox" id="crypto" name="teach" value="Blockchain">
                 <label for="crypto">Blockchain</label><br>
                 <input type="checkbox" id="frontend" name="teach" value="Frontend">
-                <label for="Frontend">Frontend</label>
+                <label for="Frontend">Frontend</label><br>
                 <input type="checkbox" id="backend" name="teach" value="Backend">
-                <label for="backend">Backend</label>
+                <label for="backend">Backend</label><br>
                 <input type="checkbox" id="app" name="teach" value="App Devlopment">
-                <label for="app">App Dev</label>
+                <label for="app">App Dev</label><br>
                 <br>
-                <input type="submit">
+                <input type="submit" style="background-color: rgb(255, 255, 255);">
             </form>
+            <br><br><br><br><br>
+            <img src="../static/img/iMac 1.svg" height="300" width="300">
+            <br><br><br><br><br><br><br><br>
+            <img src="../static/img/Headphones 1 .png" height="200" width="200">
             </div>
-              <div class="cont2">
-                  {% if 'email' in session %}
-                <form action="{{ url_for('home') }}" method="POST" class="boxdiv">
-                    {{ form_add.csrf_token }}
-                    <h4 class="heading">I want to learn</h4>
-                    {{ form_add.to_learn }}
-                    <br>
-                    <h4 class="heading">I can teach</h4>
-                    {{ form_add.can_teach }}
-                    <br/>{{ form_add.sub }}
-                  </form>
-                  {% endif %}
-                  <br>
 
-                  <h4 class="heading">Your Matches</h4><br><br>
-
-                <div>
-                    
-                    {% for post in cursor %}
-                        <div>
-                            <div class="boxdiv2" style="width: 480px;">
-                                Posted by : {{post['First_Name']}} {{post['Last_Name']}} <br>
-                                Can Teach : {{post['Teach']}} <br>
-                                Wants to Learn : {{post['Learn']}} <br>
-                                Email : {{post['Email']}} <br><br/>
-                                <div style="margin-left: 80px;">
-                                <br><br>
-                                <a href= mailto:{{post['Email']}} ><button class="btnlogin">Send Email</button></a>
-                                </div>
-                            </div>
-                        </div>
-                </div>
+            <div class="col-lg-4">
+              {% if 'email' in session %}
+              <br><br><br>
+            <form action="{{ url_for('home') }}" method="POST" class="boxdiv">
+                {{ form_add.csrf_token }}
+                <h4 class="heading" style="margin-left: 127px;">I want to learn</h4>
+                {{ form_add.to_learn }}
+                <br><br>
+                <h4 class="heading" style="margin-left: 127px;">I can teach</h4>
+                {{ form_add.can_teach }}
                 <br>
-                    {% endfor %}
-              </div>
-            <div class="cont3">
-                <br><br><br>
-        </div>
+                <br/><div style="margin-left: 127px;"> {{ form_add.sub }} </div>
+              </form>
+              {% endif %}
+              <br>
+
+            <div> 
+              <h4 class="heading" style="margin-left: 100px;">Your Matches</h4><br><br>
+                {% for post in cursor %}
+                  <div class="boxdiv2" >
+                    <div class="content">
+                      Posted by : {{post['First_Name']}} {{post['Last_Name']}} <br>
+                      Can Teach : {{post['Teach']}} <br>
+                      Wants to Learn : {{post['Learn']}} <br>
+                      Email : {{post['Email']}} <br><br/>
+                      <div>
+                      <a href= mailto:{{post['Email']}} ><button class="btnlogin">Send Email</button></a>
+                      </div>
+                      </div>
+                  </div>
+                  <br>
+                  {% endfor %}
             </div>
-          </div>
+            <br>
+                
+            </div>
+            <div class="col-lg-3">
+              <img src="../static/img/HDD 1.svg" height="300" width="300">
+              <br><br><br><br><br><br>
+              <img src="../static/img/iMac 1.svg" height="350" width="350">
+              <br><br><br><br><br><br>
+              <img src="../static/img/Headphones 1 .png" height="250" width="250">
+              <br><br><br><br><br><br>
+              <img src="../static/img/HDD 1.svg" height="300" width="300">
+            </div>
         </div>
         <div class="footer">
             <div class="f1">
