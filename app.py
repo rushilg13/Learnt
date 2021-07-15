@@ -59,7 +59,7 @@ def signup():
                 cipher = generate_password_hash(pass1, method='sha256')
                 user_collection.insert_one({'First Name': fname, 'Last Name': lname, 'Email': email, 'Password': cipher})
                 session['email'] = email
-                return render_template('home.html', fname = fname, lname = lname, email=session['email'], form_add=form_add)
+                return redirect('/home')
         else:
             return redirect(url_for('home'))
     return render_template("signup.html", form=form)
@@ -73,10 +73,14 @@ def login():
         pass1 = form_login.pass1.data
         if  request.method == 'POST':
             user = user_collection.find_one({"Email":email})
+            if user == None:
+                print("item is not existed")
+                flash('Invalid Credentials')
+                return redirect('/login')
             if check_password_hash(user['Password'], pass1):
                 print("item exists")
                 session['email'] = email
-                return render_template('home.html', fname = user['First Name'], lname = user['Last Name'], email=session['email'], form_add=form_add)
+                return redirect('/home')
             else:
                 print("item is not existed")
                 flash('Invalid Credentials')
