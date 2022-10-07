@@ -6,6 +6,9 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length
 from wtforms.fields.html5 import EmailField
 from flask_pymongo import pymongo
 from werkzeug.security import generate_password_hash, check_password_hash
+from dotenv import load_dotenv
+load_dotenv()
+import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Cant_say'
@@ -26,8 +29,9 @@ class inputFormAdd(Form):
     can_teach = SelectMultipleField('can_teach', choices=[('Frontend', 'Frontend'), ('Backend', 'Backend'), ('App Development', 'App Devlopment'), ('Blockchain', 'Blockchain'), ('Design', 'Design'), ('Machine Learning', 'Machine Learning'), ('Artificial Intelligence', 'Artificial Intelligence')], validators=[DataRequired()])
     sub = SubmitField('Add')
 
-db_password = "pizza"#input("Password for database is:")
+db_password = os.environ.get("pswd") #input("Password for database is:")
 CONNECTION_STRING = f"mongodb+srv://VIT_Admin:{db_password}@vitdiaries.tpuku.mongodb.net/CouponShare?retryWrites=true&w=majority"
+print(CONNECTION_STRING)
 client = pymongo.MongoClient(CONNECTION_STRING)
 db = client.get_database('Learnt!')
 user_collection = pymongo.collection.Collection(db, 'Users')
@@ -73,6 +77,7 @@ def login():
         pass1 = form_login.pass1.data
         if  request.method == 'POST':
             user = user_collection.find_one({"Email":email})
+            print(user)
             if user == None:
                 print("item is not existed")
                 flash('Invalid Credentials')
