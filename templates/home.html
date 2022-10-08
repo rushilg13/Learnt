@@ -1,148 +1,147 @@
 <html lang="en">
-
-<head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Quicksand&display=swap"
-    rel="stylesheet" />
-  <link rel="shortcut icon" type="image/jpg" href="../static/img/logo.svg" />
-  <link type="text/css" rel="stylesheet" href="../static/css/home.css" />
-</head>
-
-<body>
-  <nav class="navbar row">
-    <div style="margin-left: 30px;"> <a href={{url_for('landing')}}><img class="imgabout image-logo" src='../static/img/logo.svg' width="225"
-          height="40" alt="Logo" /></a>
-    </div>
-    <div class="midnav col-lg-6">
-      <ul>
-        <li>
-          <a href="/home">Home</a>
-        </li>
-        <li>
-          <a href="/contact">Contact</a>
-        </li>
-        <li>
-          <a href="/about">About</a>
-        </li>
-        {% if 'email' in session %}
-        <li>
-          <a href="/profile">Profile</a>
-        </li>
-        <li>
-          <a href="/logout">Logout</a>
-        </li>
-        {% else %}
-        <li>
-          <a href="/login">Login</a>
-        </li>
-        {% endif %}
-      </ul>
-    </div>
-    <div class="col-lg-1"></div>
-
-  </nav>
-
-  <div class="row gx-2">
-    <div class="col-lg-2 col-md-12" style="margin-left: 30px;">
-      <p>Hey, {{fname}} {{lname}}</p>
-      <form action="{{ url_for('home') }}" method="POST">
-        <h4 class="heading2">What I want to learn</h4><br>
-        <input type="checkbox" id="design" name="learn" value="Design">
-        <label for="design">Design</label><br>
-        <input type="checkbox" id="ml" name="learn" value="Machine Learning">
-        <label for="design">Machine Learning</label><br>
-        <input type="checkbox" id="ai" name="learn" value="Artificial Intelligence">
-        <label for="ai">Artificial Intelligence</label><br>
-        <input type="checkbox" id="crypto" name="learn" value="Blockchain">
-        <label for="crypto">Blockchain</label><br>
-        <input type="checkbox" id="frontend" name="learn" value="Frontend">
-        <label for="Frontend">Frontend</label><br>
-        <input type="checkbox" id="backend" name="learn" value="Backend">
-        <label for="backend">Backend</label><br>
-        <input type="checkbox" id="app" name="learn" value="App Devlopment">
-        <label for="app">App Dev</label><br><br><br>
-        <h4 class="heading2">What I can teach</h4><br>
-        <input type="checkbox" id="design" name="teach" value="Design">
-        <label for="design">Design</label><br>
-        <input type="checkbox" id="ml" name="teach" value="Machine Learning">
-        <label for="design">Machine Learning</label><br>
-        <input type="checkbox" id="ai" name="teach" value="Artificial Intelligence">
-        <label for="ai">Artificial Intelligence</label><br>
-        <input type="checkbox" id="crypto" name="teach" value="Blockchain">
-        <label for="crypto">Blockchain</label><br>
-        <input type="checkbox" id="frontend" name="teach" value="Frontend">
-        <label for="Frontend">Frontend</label><br>
-        <input type="checkbox" id="backend" name="teach" value="Backend">
-        <label for="backend">Backend</label><br>
-        <input type="checkbox" id="app" name="teach" value="App Devlopment">
-        <label for="app">App Dev</label><br>
-        <br>
-        <input type="submit" style="background-color: rgb(255, 255, 255);">
-      </form>
-    </div>
-    {% if 'email' in session %}
-    <div class="col-lg-4 col-md-6" style="margin: 0 auto;">
-      <br><br><br>
-      <form action="{{ url_for('home') }}" method="POST" class="boxdiv">
-        {{ form_add.csrf_token }}
-        <h4 class="heading">I want to learn</h4>
-        {{ form_add.to_learn }}
-        <br><br>
-        <h4 class="heading">I can teach</h4>
-        {{ form_add.can_teach }}
-        <br>
-        <br />
-        <div class="bb"> {{ form_add.sub }} </div>
-      </form>
-      {% endif %}
-    </div>
-
-  </div>
-
-  <div class="row">
-    <br>
-    <div class="col-md-6" style="margin: 0 auto;">
-      <h4 class="heading">Your Matches</h4><br><br>
-      {% for post in cursor %}
-      <div class="boxdiv2">
-        <div class="content">
-          Posted by : {{post['First_Name']}} {{post['Last_Name']}} <br>
-          Can Teach : {{post['Teach']}} <br>
-          Wants to Learn : {{post['Learn']}} <br>
-          Email : {{post['Email']}} <br><br />
-          <div>
-            <a href=mailto:{{post['Email']}}><button class="btnlogin">Send Email</button></a>
-          </div>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Quicksand&display=swap"
+            rel="stylesheet" />
+        <link rel="shortcut icon" type="image/jpg" href="../static/img/logo.svg" />
+        <link type="text/css" rel="stylesheet" href="../static/css/home.css" />
+    </head>
+    <body>
+        <nav class="navbar row">
+            <div style="margin-left: 30px;"> <a href={{url_for('landing')}}><img class="imgabout image-logo" src='../static/img/logo.svg' width="225"
+                height="40" alt="Logo" /></a>
+            </div>
+            <div class="midnav col-lg-6">
+                <ul>
+                    <li>
+                        <a href="/home">Home</a>
+                    </li>
+                    <li>
+                        <a href="/contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="/about">About</a>
+                    </li>
+                    {% if 'email' in session %}
+                    <li>
+                        <a href="/profile">Profile</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Logout</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="/login">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-lg-1"></div>
+        </nav>
+        <div class="row gx-2">
+            <div class="col-lg-2 col-md-12" style="margin-left: 30px;">
+                <p>Hey, {{fname}} {{lname}}</p>
+                <form action="{{ url_for('home') }}" method="POST">
+                    <h4 class="heading2">What I want to learn</h4>
+                    <br>
+                    <input type="checkbox" id="design" name="learn" value="Design">
+                    <label for="design">Design</label><br>
+                    <input type="checkbox" id="ml" name="learn" value="Machine Learning">
+                    <label for="design">Machine Learning</label><br>
+                    <input type="checkbox" id="ai" name="learn" value="Artificial Intelligence">
+                    <label for="ai">Artificial Intelligence</label><br>
+                    <input type="checkbox" id="crypto" name="learn" value="Blockchain">
+                    <label for="crypto">Blockchain</label><br>
+                    <input type="checkbox" id="frontend" name="learn" value="Frontend">
+                    <label for="Frontend">Frontend</label><br>
+                    <input type="checkbox" id="backend" name="learn" value="Backend">
+                    <label for="backend">Backend</label><br>
+                    <input type="checkbox" id="app" name="learn" value="App Devlopment">
+                    <label for="app">App Dev</label><br><br><br>
+                    <h4 class="heading2">What I can teach</h4>
+                    <br>
+                    <input type="checkbox" id="design" name="teach" value="Design">
+                    <label for="design">Design</label><br>
+                    <input type="checkbox" id="ml" name="teach" value="Machine Learning">
+                    <label for="design">Machine Learning</label><br>
+                    <input type="checkbox" id="ai" name="teach" value="Artificial Intelligence">
+                    <label for="ai">Artificial Intelligence</label><br>
+                    <input type="checkbox" id="crypto" name="teach" value="Blockchain">
+                    <label for="crypto">Blockchain</label><br>
+                    <input type="checkbox" id="frontend" name="teach" value="Frontend">
+                    <label for="Frontend">Frontend</label><br>
+                    <input type="checkbox" id="backend" name="teach" value="Backend">
+                    <label for="backend">Backend</label><br>
+                    <input type="checkbox" id="app" name="teach" value="App Devlopment">
+                    <label for="app">App Dev</label><br>
+                    <br>
+                    <input type="submit" style="background-color: rgb(255, 255, 255);">
+                </form>
+            </div>
+            {% if 'email' in session %}
+            <div class="col-lg-4 col-md-6" style="margin: 0 auto;">
+                <br><br><br>
+                <form action="{{ url_for('home') }}" method="POST" class="boxdiv">
+                    {{ form_add.csrf_token }}
+                    <h4 class="heading">I want to learn</h4>
+                    {{ form_add.to_learn }}
+                    <br><br>
+                    <h4 class="heading">I can teach</h4>
+                    {{ form_add.can_teach }}
+                    <br>
+                    <br />
+                    <div class="bb"> {{ form_add.sub }} </div>
+                </form>
+                {% endif %}
+            </div>
         </div>
-      </div>
-      <br>
-      {% endfor %}
-    </div>
-  </div>
-  <br>
-
-  <div class="footer">
-    <div class="f1">
-      <h4>About</h4><br>
-      <h5>About us<br><br>Team<br><br>Our purpose and vision</h5>
-    </div>
-    <div class="f1">
-      <h4>Legal</h4><br>
-      <h5>Terms and Conditions<br><br>Privacy Policy<br><br>Offer Terms</h5>
-    </div>
-    <div class="f1">
-      <h4>Contact</h4><br>
-      <h5>Instagram<br><br>Facebook<br><br>Twitter</h5>
-    </div>
-    <div class="f1">
-      <h4>Download App</h4><br>
-      <button class="whitebtn">Download Now</button>
-    </div>
-  </div>
-  </div>
-</body>
-
+        <div class="row">
+            <br>
+            <div class="col-md-6" style="margin: 0 auto;">
+                <h4 class="heading">Your Matches</h4>
+                <br><br>
+                {% for post in cursor %}
+                <div class="boxdiv2">
+                    <div class="content">
+                        Posted by : {{post['First_Name']}} {{post['Last_Name']}} <br>
+                        Can Teach : {{post['Teach']}} <br>
+                        Wants to Learn : {{post['Learn']}} <br>
+                        Email : {{post['Email']}} <br><br />
+                        <div>
+                            <button class="btnlogin">Send Request</button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                {% endfor %}
+            </div>
+        </div>
+        <br>
+        <div class="footer">
+            <div class="f1">
+                <h4>About</h4>
+                <br>
+                <h5>About us<br><br>Team<br><br>Our purpose and vision</h5>
+            </div>
+            <div class="f1">
+                <h4>Legal</h4>
+                <br>
+                <h5>Terms and Conditions<br><br>Privacy Policy<br><br>Offer Terms</h5>
+            </div>
+            <div class="f1">
+                <h4>Contact</h4>
+                <br>
+                <h5>Instagram<br><br>Facebook<br><br>Twitter</h5>
+            </div>
+            <div class="f1">
+                <h4>Download App</h4>
+                <br>
+                <button class="whitebtn">Download Now</button>
+            </div>
+        </div>
+        </div>
+    </body>
 </html>

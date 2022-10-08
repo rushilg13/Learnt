@@ -1,99 +1,103 @@
 <html lang="en">
-<head>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Quicksand&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="shortcut icon" type="image/jpg" href="../static/img/logo.svg"/>
-    <link type="text/css" rel="stylesheet" href="../static/css/index.css"/>
-</head>
-
-<body>
-  <nav class="navbar">
-    <div>
-        <a href={{url_for('landing')}}><img class="imgabout image-logo" src='../static/img/logo.svg' width="225"
-                height="40" alt="Logo" /></a>
-    </div>
-    <div class="midnav">
-        <ul>
-            <li>
-                <a href="/home">Home</a>
-            </li>
-            <li>
-                <a href="/contact">Contact</a>
-            </li>
-            <li>
-                <a href="/about">About</a>
-            </li>
-            {% if 'email' in session %}
-            <li>
-                <a href="/logout">Logout</a>
-            </li>
-            {% endif %}
-        </ul>
-    </div>
-    {% if 'email' not in session %}
-    <div style="margin-right: 20px;">
-        <a href={{url_for('login')}}>
-            <button class="btnlogin">
-                Login
-            </button>
-        </a>
-    </div>
-    {% else %}
-    <div></div>
-    {% endif %}
-</nav>
-        <div class="container">
-          <div class="row align-items-center ">
-          <div class="col-lg-5">
-              <h1 class="font-weight-bold heading ">I want to learn</h1>
-              <span class="heading change_content1 typewriter"></span>
-              <h1 class="font-weight-bold heading">I can teach</h1>
-              <span class="heading change_content2 typewriter"></span><br><br>
-              <p>MatchEd is a free platform that acts a matchmaker 
-                for people who wants to learn new skills and teach 
-                a skill they are familiar with in return.
-                </p><br>
-                <a href={{url_for('home')}}><button>Find me a match</button></a>
+    <head>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+            />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+            />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Quicksand&display=swap"
+            rel="stylesheet"
+            />
+        <link rel="shortcut icon" type="image/jpg" href="../static/img/logo.svg"/>
+        <link type="text/css" rel="stylesheet" href="../static/css/index.css"/>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div>
+                <a href={{url_for('landing')}}><img class="imgabout image-logo" src='../static/img/logo.svg' width="225"
+                    height="40" alt="Logo" /></a>
             </div>
-            <div class="col-lg-7">
-              <img class="animate_animated animatefadeIn animate_delay-1s image" src='../static/img/Headphones 1.png' alt="some aesthetic shit" />
-        </div>
-          </div>
+            <div class="midnav">
+                <ul>
+                    <li>
+                        <a href="/home">Home</a>
+                    </li>
+                    <li>
+                        <a href="/contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="/about">About</a>
+                    </li>
+                    {% if 'email' in session %}
+                    <li>
+                        <a href="/logout">Logout</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            {% if 'email' not in session %}
+            <div style="margin-right: 20px;">
+                <a href={{url_for('login')}}>
+                <button class="btnlogin">
+                Login
+                </button>
+                </a>
+            </div>
+            {% else %}
+            <div></div>
+            {% endif %}
+        </nav>
+        <div class="container">
+            <div class="row align-items-center ">
+                <div class="col-lg-5">
+                    <h1 class="font-weight-bold heading ">I want to learn</h1>
+                    <span class="heading change_content1 typewriter"></span>
+                    <h1 class="font-weight-bold heading">I can teach</h1>
+                    <span class="heading change_content2 typewriter"></span><br><br>
+                    <p>MatchEd is a free platform that acts a matchmaker 
+                        for people who wants to learn new skills and teach 
+                        a skill they are familiar with in return.
+                    </p>
+                    <br>
+                    <a href={{url_for('home')}}><button>Find me a match</button></a>
+                </div>
+                <div class="col-lg-7">
+                    <img class="animate_animated animatefadeIn animate_delay-1s image" src='../static/img/Headphones 1.png' alt="some aesthetic shit" />
+                </div>
+            </div>
         </div>
         <br>
         <div class="footer">
             <div class="f1">
-                <h4>About</h4><br>
+                <h4>About</h4>
+                <br>
                 <h5>About us<br><br>Team<br><br>Our purpose and vision</h5>
             </div>
             <div class="f1">
-                <h4>Legal</h4><br>
+                <h4>Legal</h4>
+                <br>
                 <h5>Terms and Conditions<br><br>Privacy Policy<br><br>Offer Terms</h5>
             </div>
             <div class="f1">
-                <h4>Contact</h4><br>
+                <h4>Contact</h4>
+                <br>
                 <h5>Instagram<br><br>Facebook<br><br>Twitter</h5>
             </div>
             <div class="f1">
-                <h4>Download App</h4><br>
+                <h4>Download App</h4>
+                <br>
                 <button class="whitebtn">Download Now</button>
             </div>
         </div>
-    </div>
-</body>
+        </div>
+    </body>
 </html>
