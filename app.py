@@ -36,6 +36,7 @@ client = pymongo.MongoClient(CONNECTION_STRING)
 db = client.get_database('Learnt!')
 user_collection = pymongo.collection.Collection(db, 'Users')
 add_collection = pymongo.collection.Collection(db, 'Add')
+responses_collection = pymongo.collection.Collection(db, 'Responses')
 
 @app.route('/')
 def landing():
@@ -129,11 +130,19 @@ def home():
                 return redirect(url_for('home'))
     return render_template('home.html', form_add=form_add, cursor=cursor)
 
-
 @app.route('/about')
 def about():
     return render_template('about.html')
 
+@app.route('/profile')
+def profile():
+    if 'email' not in session:
+        return redirect(url_for('home'))
+    else:
+        user = user_collection.find_one({"Email":session['email']})
+        reqs = list(add_collection.find({"Email":session['email']}))
+        resps = responses_collection.find()
+        return render_template('profile.html', num_reqs = len(reqs), profile_id = str(user['_id']), email= session['email'], fname = user['First Name'], lname = user['Last Name'])
 
 if __name__ == "__main__":
     app.run(debug=True)
