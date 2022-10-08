@@ -7,6 +7,7 @@ from wtforms.fields.html5 import EmailField
 from flask_pymongo import pymongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
+from bson import ObjectId
 load_dotenv()
 import os
 
@@ -116,19 +117,22 @@ def home():
     else:
         form_add = inputFormAdd()
         cursor = add_collection.find()
+        responses = list(responses_collection.find())
+        ids = []
+        for response in responses:
+            idx = response['postid']
+            ids.append(ObjectId(idx))
         if request.method=="POST":
             can_teach = form_add.can_teach.data
             to_learn = form_add.to_learn.data
             teach = request.form.getlist("teach")
             learn = request.form.getlist("learn")
-            print(teach)
-            print(learn)
-            print(can_teach, to_learn)
             user = user_collection.find_one({"Email":session['email']})
             if request.method=="POST":
                 add_collection.insert_one({'Teach': can_teach[0], 'Learn': to_learn[0], 'Email':session['email'], 'First_Name': user['First Name'], 'Last_Name': user['Last Name']})
                 return redirect(url_for('home'))
-    return render_template('home.html', form_add=form_add, cursor=cursor)
+    print(ids)
+    return render_template('home.html', form_add=form_add, cursor=cursor, email = session['email'], ids = ids)
 
 @app.route('/about')
 def about():
@@ -141,8 +145,19 @@ def profile():
     else:
         user = user_collection.find_one({"Email":session['email']})
         reqs = list(add_collection.find({"Email":session['email']}))
-        resps = responses_collection.find()
-        return render_template('profile.html', num_reqs = len(reqs), profile_id = str(user['_id']), email= session['email'], fname = user['First Name'], lname = user['Last Name'])
+        resps = list(responses_collection.find({"teacher":session['email']}))
+        return render_template('profile.html', num_res = len(resps), num_reqs = len(reqs), profile_id = str(user['_id']), email= session['email'], fname = user['First Name'], lname = user['Last Name'])
+
+@app.route('/send_request',  methods=['POST'])
+def send_request():
+    if 'email' not in session:
+        return redirect(url_for('login'))
+    else:
+        postid = request.form.get("postId")
+        post = list(add_collection.find({"_id":ObjectId(postid)}))
+        post = post[0]
+        responses_collection.insert_one({"seeker":session['email'], "postid":postid, "teacher" : post['Email']})
+        return redirect(url_for('home'))
 
 if __name__ == "__main__":
     app.run(debug=True)
