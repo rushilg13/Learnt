@@ -65,6 +65,11 @@ li {
   width: 260px;
   height: 239px;
 }
+
+.content {
+  text-align: justify;
+}
+
 .typewriter {
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   border-right: 0.15em solid rgb(212, 198, 172); /* The typwriter cursor */
@@ -200,7 +205,8 @@ input {
   padding: 10px;
   border-radius: 10px;
   background-color: white;
-  width: 500px;
+  width: 20%;
+  margin: 0 auto;
 }
 
 .container {
