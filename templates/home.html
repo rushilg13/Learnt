@@ -20,7 +20,7 @@
     <div class="midnav col-lg-6">
       <ul>
         <li>
-          <a href="/">Home</a>
+          <a href="/home">Home</a>
         </li>
         <li>
           <a href="/contact">Contact</a>
@@ -43,11 +43,11 @@
 
   </nav>
 
-  <div class="row h-75">
-    <div class="col-lg-3" style="margin-left: 200px;">
+  <div class="row gx-3">
+    <div class="col-lg-4 col-md-12" style="margin-left: 200px;">
       <p>Hey, {{fname}} {{lname}}</p>
       <form action="{{ url_for('home') }}" method="POST">
-        <h4 class="heading">What I want to learn</h4><br>
+        <h4 class="heading2">What I want to learn</h4><br>
         <input type="checkbox" id="design" name="learn" value="Design">
         <label for="design">Design</label><br>
         <input type="checkbox" id="ml" name="learn" value="Machine Learning">
@@ -62,7 +62,7 @@
         <label for="backend">Backend</label><br>
         <input type="checkbox" id="app" name="learn" value="App Devlopment">
         <label for="app">App Dev</label><br><br><br>
-        <h4 class="heading">What I can teach</h4><br>
+        <h4 class="heading2">What I can teach</h4><br>
         <input type="checkbox" id="design" name="teach" value="Design">
         <label for="design">Design</label><br>
         <input type="checkbox" id="ml" name="teach" value="Machine Learning">
@@ -81,57 +81,52 @@
         <input type="submit" style="background-color: rgb(255, 255, 255);">
       </form>
     </div>
-
-    <div class="col-lg-5">
-      {% if 'email' in session %}
+    {% if 'email' in session %}
+    <div class="col-lg-4 col-md-6">
       <br><br><br>
       <form action="{{ url_for('home') }}" method="POST" class="boxdiv">
         {{ form_add.csrf_token }}
-        <h4 class="heading" style="margin-left: 127px;">I want to learn</h4>
+        <h4 class="heading">I want to learn</h4>
         {{ form_add.to_learn }}
         <br><br>
-        <h4 class="heading" style="margin-left: 127px;">I can teach</h4>
+        <h4 class="heading">I can teach</h4>
         {{ form_add.can_teach }}
         <br>
         <br />
-        <div style="margin-left: 127px;"> {{ form_add.sub }} </div>
+        <div class="bb"> {{ form_add.sub }} </div>
       </form>
       {% endif %}
     </div>
+
   </div>
-<br><br><br>
-  <div class="row">
-    <div class="col-lg-5">
-      <br><br><br><br><br><br><br><br><br>
-      <img src="../static/img/HDD 1.svg" height="300" width="300">
-      <br><br><br><br><br><br>
-      <img src="../static/img/iMac 1.svg" height="350" width="350">
-    </div>
-    <div class="col-lg-4">
-      <h4 class="heading" style="margin-left: 100px;">Your Matches</h4><br><br>
-      {% for post in cursor %}
-      <div class="boxdiv2">
-        <div class="content">
-          Posted by : {{post['First_Name']}} {{post['Last_Name']}} <br>
-          Can Teach : {{post['Teach']}} <br>
-          Wants to Learn : {{post['Learn']}} <br>
-          Email : {{post['Email']}} <br><br />
-          <div>
-            <a href=mailto:{{post['Email']}}><button class="btnlogin">Send Email</button></a>
-          </div>
-        </div>
+
+    <div class="row gx-3" style="margin-right: 12px;">
+      <div class="col-lg-6 col-md-12">
+        <br><br><br><br><br><br><br><br><br>
       </div>
       <br>
-      {% endfor %}
-    </div>
-    <div class="col-lg-3">
-      <img src="../static/img/Headphones 1 .png" height="250" width="250">
-      <br><br><br><br><br><br>
-      <img src="../static/img/HDD 1.svg" height="300" width="300">
-    </div>
+      <div class="col-lg-4 col-md-6">
+        <h4 class="heading">Your Matches</h4><br><br>
+        {% for post in cursor %}
+        <div class="boxdiv2">
+          <div class="content">
+            Posted by : {{post['First_Name']}} {{post['Last_Name']}} <br>
+            Can Teach : {{post['Teach']}} <br>
+            Wants to Learn : {{post['Learn']}} <br>
+            Email : {{post['Email']}} <br><br />
+            <div>
+              <a href=mailto:{{post['Email']}}><button class="btnlogin">Send Email</button></a>
+            </div>
+          </div>
+        </div>
+        <br>
+        {% endfor %}
+      </div>
 
+      <div class="col-lg-2 col-md-6">
+      </div>
 
-  </div>
+    </div>
   <br>
 
   <div class="footer">

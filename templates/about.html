@@ -22,31 +22,41 @@
 </head>
 
 <body>
-      <nav class="navbar">
-          <div>
-            <a href={{url_for('landing')}}><img class="imgabout image-logo" src='../static/img/logo.svg' width="225" height="40" alt="Logo" /></a>
-          </div>
-          <div class="midnav">
-              <ul>
-                  <li>
-                      <a href="/">Home</a>
-                  </li>
-                  <li>
-                      <a href="/contact">Contact</a>
-                  </li>
-                  <li>
-                      <a href="/about">About</a>
-                  </li>
-                </ul>
-          </div>
-          <div>
-              <a href={{url_for('login')}}>
-              <button class="btnlogin">
-                  Login
-              </button>
-            </a>
-          </div>
-      </nav>
+  <nav class="navbar">
+    <div class="col-lg-3">
+      <a href={{url_for('landing')}}><img class="imgabout image-logo" src='../static/img/logo.svg' width="225"
+          height="40" alt="Logo" /></a>
+    </div>
+    <div class="midnav col-lg-6">
+      <ul>
+        <li>
+          <a href="/home">Home</a>
+        </li>
+        <li>
+          <a href="/contact">Contact</a>
+        </li>
+        <li>
+          <a href="/about">About</a>
+        </li>
+        {% if 'email' in session %}
+        <li>
+          <a href="/logout">Logout</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+    {% if 'email' not in session %}
+    <div>
+      <a href={{url_for('login')}}>
+        <button class="btnlogin">
+          Login
+        </button>
+      </a>
+    </div>
+    {% else %}
+    <div class="col-lg-2"></div>
+    {% endif %}
+  </nav>
         <div class="container">
           <div class="row align-items-center ">
           <div class="col-lg-5" style="text-align: justify; text-justify: inter-word;">

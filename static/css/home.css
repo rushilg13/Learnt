@@ -6,11 +6,26 @@ body {
 }
 
 .heading {
+  text-align: center;
   font-family: "Montserrat", sans-serif;
   color: rgb(78, 83, 116);
-  font-size: 30px;
+  font-size: 28px;
   font-style: normal;
   font-weight: 700;
+  width: 100%;
+}
+
+.heading2 {
+  font-family: "Montserrat", sans-serif;
+  color: rgb(78, 83, 116);
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  width: 100%;
+}
+
+.bb {
+  text-align: center;
 }
 
 .text-small {
@@ -80,9 +95,9 @@ li {
 }
 
 body {
-  background-image: url(../img/bg2.jpg);
+  background-image: url(../img/bg_new.jpg);
   background-size: 100%;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   min-height: 110vh;
 }
 
@@ -120,6 +135,7 @@ input {
   padding: 10px;
   border-radius: 10px;
   background-color: white;
+  height: 83%;
 }
 
 .boxdiv2 {
@@ -168,8 +184,10 @@ button {
 }
 
 select {
+  height: 30%;
+  width: 100%;
   font-size: 1.2rem;
-  padding: 10px 100px;
+  padding: 10px;
   border: none;
   font-family: "Montserrat", sans-serif;
   border-radius: 4px;
