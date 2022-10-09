@@ -12,43 +12,67 @@
 </head>
 
 <body>
+	{% if 'email' in session %}
 	<nav class="navbar row">
-		<div class="col-lg-4" style="margin-left: 30px;"> <a href={{url_for('landing')}}><img class="imgabout image-logo"
+		<div class="col-lg-4"> <a href={{url_for('landing')}}><img class="imgabout image-logo"
+					src='../static/img/logo.svg' width="225" height="40" alt="Logo" /></a>
+		</div>
+		<div class="midnav col-lg-5">
+			<div style="margin: 0 auto; text-align: center;">
+				<ul>
+					<li>
+						<a href="/home">Home</a>
+					</li>
+					<li>
+						<a href="/contact">Contact</a>
+					</li>
+					<li>
+						<a href="/about">About</a>
+					</li>
+					<li>
+						<a href="/profile">Profile</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-lg-3" style="display: flex; justify-content: flex-end;">
+			<a href={{url_for('logout')}}>
+				<button class="btnlogin">
+					Logout
+				</button>
+			</a>
+		</div>
+	</nav>
+	{% else %}
+	<nav class="navbar row">
+		<div class="col-lg-4"> <a href={{url_for('landing')}}><img class="imgabout image-logo"
 					src='../static/img/logo.svg' width="225" height="40" alt="Logo" /></a>
 		</div>
 		<div class="midnav col-lg-4">
-			<ul>
-				<li>
-					<a href="/home">Home</a>
-				</li>
-				<li>
-					<a href="/contact">Contact</a>
-				</li>
-				<li>
-					<a href="/about">About</a>
-				</li>
-				{% if 'email' in session %}
-				<li>
-					<a href="/profile">Profile</a>
-				</li>
-				<li>
-					<a href="/logout">Logout</a>
-				</li>
-				{% endif %}
+			<div style="margin: 0 auto; text-align: center;">
+				<ul>
+					<li>
+						<a href="/home">Home</a>
+					</li>
+					<li>
+						<a href="/contact">Contact</a>
+					</li>
+					<li>
+						<a href="/about">About</a>
+					</li>
 				</ul>
-				</div>
-				{% if 'email' not in session %}
-				<div style="display: flex; justify-content: flex-end;" class="col-lg-3">
-					<a href={{url_for('login')}}>
-					<button class="btnlogin">
+			</div>
+		</div>
+		<div class="col-lg-4" style="display: flex; justify-content: flex-end;">
+			<a href={{url_for('login')}}>
+				<button class="btnlogin">
 					Login
-					</button>
-					</a>
-				</div>
-				{% else %}
-				<div class="col-lg-3"></div>
-				{% endif %}
+				</button>
+			</a>
+		</div>
 	</nav>
+	{% endif %}
+
 	<div class="row gx-2">
 		<div class="col-lg-2 col-md-12" style="margin-left: 30px;">
 			<p>Hey, {{fname}} {{lname}}</p>
@@ -120,14 +144,14 @@
 					Email : {{post['Email']}} <br><br />
 					<div>
 						{% if (email != post['Email'] and post['_id'] in ids) %}
-						<button class="btnlogin" disabled>You already applied to this request</button>	
+						<button class="btnlogin" disabled>You already applied to this request</button>
 						{% elif email != post['Email'] %}
 						<form action="{{ url_for('send_request') }}" method="POST">
 							<input type="hidden" id="postId" name="postId" value={{ post['_id'] }} />
 							<button type="submit" class="btnlogin">Send Request</button>
 						</form>
 						{% else %}
-							<button class="btnlogin" disabled>You posted this request</button>						
+						<button class="btnlogin" disabled>You posted this request</button>
 						{% endif %}
 					</div>
 				</div>

@@ -72,6 +72,8 @@ def signup():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    if 'email' in session:
+        return redirect('/home')
     form_add = inputFormAdd()
     form_login = inputFormlogin()
     if request.method=="POST":

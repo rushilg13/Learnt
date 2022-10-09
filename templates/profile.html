@@ -7,50 +7,74 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Quicksand&display=swap"
         rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" type="image/jpg" href="../static/img/logo.svg" />
     <link type="text/css" rel="stylesheet" href="../static/css/index.css" />
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="col-lg-3">
-            <a href={{url_for('landing')}}><img class="imgabout image-logo" src='../static/img/logo.svg' width="225"
-                    height="40" alt="Logo" /></a>
+    {% if 'email' in session %}
+    <nav class="navbar row">
+        <div class="col-lg-3"> <a href={{url_for('landing')}}><img class="imgabout image-logo"
+                    src='../static/img/logo.svg' width="225" height="40" alt="Logo" /></a>
         </div>
-        <div class="midnav col-lg-6">
-            <ul>
-                <li>
-                    <a href="/home">Home</a>
-                </li>
-                <li>
-                    <a href="/contact">Contact</a>
-                </li>
-                <li>
-                    <a href="/about">About</a>
-                </li>
-                {% if 'email' in session %}
-                <li>
-                    <a href="/profile">Profile</a>
-                </li>
-                <li>
-                    <a href="/logout">Logout</a>
-                </li>
-                {% endif %}
-            </ul>
+        <div class="midnav col-lg-5">
+            <div style="margin: 0 auto; text-align: center;">
+                <ul>
+                    <li>
+                        <a href="/home">Home</a>
+                    </li>
+                    <li>
+                        <a href="/contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="/about">About</a>
+                    </li>
+                    <li>
+                        <a href="/profile">Profile</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        {% if 'email' not in session %}
-        <div>
+        <div class="col-lg-3" style="display: flex; justify-content: flex-end;">
+            <a href={{url_for('logout')}}>
+                <button class="btnlogin">
+                    Logout
+                </button>
+            </a>
+        </div>
+    </nav>
+    {% else %}
+    <nav class="navbar row">
+        <div class="col-lg-4"> <a href={{url_for('landing')}}><img class="imgabout image-logo"
+                    src='../static/img/logo.svg' width="225" height="40" alt="Logo" /></a>
+        </div>
+        <div class="midnav col-lg-4">
+            <div style="margin: 0 auto; text-align: center;">
+                <ul>
+                    <li>
+                        <a href="/home">Home</a>
+                    </li>
+                    <li>
+                        <a href="/contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-3" style="display: flex; justify-content: flex-end;">
             <a href={{url_for('login')}}>
                 <button class="btnlogin">
                     Login
                 </button>
             </a>
         </div>
-        {% else %}
-        <div class="col-lg-2"></div>
-        {% endif %}
     </nav>
+    {% endif %}
 
 
     <section class="vh-100">
@@ -76,15 +100,25 @@
                                             {% if rating == 0 %}
                                             <p class="text-muted">No Rating</p>
                                             {% elif rating == 1 %}
-                                            <i class="fa-solid star fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+                                            <i class="fa-solid star fa-star"></i><i class="fa-regular fa-star"></i><i
+                                                class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i
+                                                class="fa-regular fa-star"></i>
                                             {% elif rating == 2 %}
-                                            <i class="fa-solid star fa-star"></i><i class="fa-solid star fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+                                            <i class="fa-solid star fa-star"></i><i class="fa-solid star fa-star"></i><i
+                                                class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i
+                                                class="fa-regular fa-star"></i>
                                             {% elif rating == 3 %}
-                                            <i class="fa-solid star fa-star"></i><i class="fa-solid star fa-star"></i><i class="fa-solid star fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+                                            <i class="fa-solid star fa-star"></i><i class="fa-solid star fa-star"></i><i
+                                                class="fa-solid star fa-star"></i><i class="fa-regular fa-star"></i><i
+                                                class="fa-regular fa-star"></i>
                                             {% elif rating == 4 %}
-                                            <i class="fa-solid star fa-star"></i><i class="fa-solid star fa-star"></i><i class="fa-solid star fa-star"></i><i class="fa-solid star fa-star"></i><i class="fa-regular fa-star"></i>
+                                            <i class="fa-solid star fa-star"></i><i class="fa-solid star fa-star"></i><i
+                                                class="fa-solid star fa-star"></i><i
+                                                class="fa-solid star fa-star"></i><i class="fa-regular fa-star"></i>
                                             {% elif rating == 5 %}
-                                            <i class="fa-solid star fa-star"></i><i class="fa-solid star fa-star"></i><i class="fa-solid star fa-star"></i><i class="fa-solid star fa-star"></i><i class="fa-solid star fa-star"></i>
+                                            <i class="fa-solid star fa-star"></i><i class="fa-solid star fa-star"></i><i
+                                                class="fa-solid star fa-star"></i><i
+                                                class="fa-solid star fa-star"></i><i class="fa-solid star fa-star"></i>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -137,7 +171,8 @@
                     {% else %}
                     <form class="col-lg-6" action="{{ url_for('accept_request') }}" method="POST">
                         <input type="hidden" id="respId" name="respId" value={{ resp['_id'] }} />
-                        <button type="submit" class="btn btn-sm btn-success"> <i class="fa-solid fa-check"> </i> Accept </button>
+                        <button type="submit" class="btn btn-sm btn-success"> <i class="fa-solid fa-check"> </i> Accept
+                        </button>
                     </form>
                     <form class="col-lg-6" action="{{ url_for('reject_request') }}" method="POST">
                         <input type="hidden" id="respId" name="respId" value={{ resp['_id'] }} />

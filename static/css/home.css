@@ -61,7 +61,6 @@ p {
 }
 
 .midnav {
-  width: 50%;
   padding: 8px;
   background-image: linear-gradient(white, white);
   border-radius: 10px;
@@ -69,6 +68,9 @@ p {
 
 ul {
   display: inline-block;
+  justify-content: space-around;
+  align-content: space-around;
+  align-items: center;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -111,6 +113,9 @@ body {
   padding-top: 25px;
   font-family: "Quicksand", sans-serif;
   display: flex;
+  justify-content: space-around;
+  align-content: space-around;
+  align-items: center;
 }
 input {
   border-style: none;
