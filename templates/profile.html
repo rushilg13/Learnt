@@ -48,26 +48,54 @@
             <div class="col-lg-2"></div>
             {% endif %}
         </nav>
-        <div class="container">
-            <div class="boxdiv2">
-                <div class="content">
-                    Name : {{fname}} {{lname}} <br>
-                    Email : {{email}} <br>
-                    Requests Made: {{num_reqs}}
-                    Responses received: {{num_res}}
-                    <br />
+
+
+        <section class="vh-100">
+            <div class="container py-5 h-100">
+              <div style="margin: 0 auto;" class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-lg-6 mb-4 mb-lg-0">
+                  <div class="card mb-3" style="border-radius: .5rem;">
+                    <div class="row g-0">
+                      <div class="col-md-4 gradient-custom text-center text-white"
+                        style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                          alt="Avatar" class="img-fluid my-5" style="width: 500px;" />
+                        <h5>{{fname}} {{lname}} </h5>
+                        <p style="color: white;">{{ email }}</p>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body p-4">
+                          <h6>Information</h6>
+                          <hr class="mt-0 mb-4">
+                          <div class="row pt-1">
+                            <div class="col-6 mb-3">
+                              <h6>Email</h6>
+                              <p class="text-muted">{{ email }}</p>
+                            </div>
+                            <div class="col-6 mb-3">
+                              <p class="text-muted"></p>
+                            </div>
+                          </div>
+                          <h6>Data</h6>
+                          <hr class="mt-0 mb-4">
+                          <div class="row pt-1">
+                            <div class="col-6 mb-3">
+                              <h6>Requests Made</h6>
+                              <p class="text-muted">{{num_reqs}}</p>
+                            </div>
+                            <div class="col-6 mb-3">
+                              <h6> Responses Received</h6>
+                              <p class="text-muted">{{num_res}}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="content">
-                    {% for resp in resps %}
-                    Name : {{fname}} {{lname}} <br>
-                    Email : {{email}} <br>
-                    Responses: {{num_reqs}}
-                    {% endfor %}
-                    <br />
-                </div>
+              </div>
             </div>
-        </div>
-        <br><br><br>
+          </section>
         <div class="footer">
             <div class="f1">
                 <h4>About</h4>

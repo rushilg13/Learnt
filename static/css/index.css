@@ -66,6 +66,10 @@ li {
   height: 239px;
 }
 
+.gradient-custom {
+  background-color: rgb(78, 83, 116);
+  }
+
 .content {
   text-align: left;
 }
