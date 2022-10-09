@@ -108,6 +108,7 @@ def logout():
 def home():
     if 'email' not in session:
         cursor = add_collection.find()
+        all_users = list(user_collection.find())
         if request.method=="POST":
             teach = request.form.getlist("teach")
             learn = request.form.getlist("learn")
@@ -115,8 +116,10 @@ def home():
             #     print(i['Learn'], teach)
             #     if((i['Learn'] in teach) or (i['Teach'] in learn)):
             #         return render_template('home.html', i = i)
-        return render_template('home.html', cursor=cursor)
+        return render_template('home.html', all_users=all_users, cursor=cursor)
     else:
+        all_users = list(user_collection.find())
+        user = user_collection.find_one({"Email":session['email']})
         form_add = inputFormAdd()
         cursor = add_collection.find()
         responses = list(responses_collection.find())
@@ -130,10 +133,13 @@ def home():
             teach = request.form.getlist("teach")
             learn = request.form.getlist("learn")
             user = user_collection.find_one({"Email":session['email']})
+            fname=user['First Name']
+            print(fname)
             if request.method=="POST":
                 add_collection.insert_one({'Teach': can_teach[0], 'Learn': to_learn[0], 'Email':session['email'], 'First_Name': user['First Name'], 'Last_Name': user['Last Name']})
                 return redirect(url_for('home'))
-    return render_template('home.html', form_add=form_add, cursor=cursor, email = session['email'], ids = ids)
+        return render_template('home.html', all_users = all_users, form_add=form_add, cursor=cursor, email = session['email'], ids = ids, fname=user['First Name'], lname=user['Last Name'])
+    return redirect(url_for('home'))
 
 @app.route('/about')
 def about():

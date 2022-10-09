@@ -73,6 +73,7 @@
 	</nav>
 	{% endif %}
 
+	{% if 'email' in session %}
 	<div class="row gx-2">
 		<div class="col-lg-2 col-md-12" style="margin-left: 30px;">
 			<p>Hey, {{fname}} {{lname}}</p>
@@ -113,26 +114,102 @@
 				<input type="submit" style="background-color: rgb(255, 255, 255);">
 			</form>
 		</div>
-		{% if 'email' in session %}
-		<div class="col-lg-4 col-md-6" style="margin: 0 auto;">
-			<br><br><br>
-			<form action="{{ url_for('home') }}" method="POST" class="boxdiv">
-				{{ form_add.csrf_token }}
-				<h4 class="heading">I want to learn</h4>
-				{{ form_add.to_learn }}
-				<br><br>
-				<h4 class="heading">I can teach</h4>
-				{{ form_add.can_teach }}
+		<div style="margin: 0 auto;">
+			<div style="margin: 0 auto;">
+				<br><br><br>
+				<form action="{{ url_for('home') }}" method="POST" class="boxdiv">
+					{{ form_add.csrf_token }}
+					<h4 class="heading">I want to learn</h4>
+					{{ form_add.to_learn }}
+					<br><br>
+					<h4 class="heading">I can teach</h4>
+					{{ form_add.can_teach }}
+					<br>
+					<br />
+					<div class="bb"> {{ form_add.sub }} </div>
+				</form>
+			</div>
+			<br><br>
+			<div style="margin: 0 auto;">
+				<h4 class="heading">Your Matches</h4>
 				<br>
-				<br />
-				<div class="bb"> {{ form_add.sub }} </div>
-			</form>
-			{% endif %}
+				{% for post in cursor %}
+				<div class="boxdiv2">
+					<div class="content">
+						Posted by : {{post['First_Name']}} {{post['Last_Name']}} <br>
+						Can Teach : {{post['Teach']}} <br>
+						Wants to Learn : {{post['Learn']}} <br>
+						{% for user in all_users %}
+						{% if user['Email'] == post['Email'] %}
+						{% if user['num_rating'] != 0 %}
+						Rating : {{user['rating']/user['num_rating']}} <br><br />
+						{% else %}
+						Rating: 0<br><br />
+						{% endif %}
+						{% endif %}
+						{% endfor %}
+						<div>
+							{% if (email != post['Email'] and post['_id'] in ids) %}
+							<button class="btnlogin" disabled>You already applied to this request</button>
+							{% elif email != post['Email'] %}
+							<form action="{{ url_for('send_request') }}" method="POST">
+								<input type="hidden" id="postId" name="postId" value={{ post['_id'] }} />
+								<button type="submit" class="btnlogin">Send Request</button>
+							</form>
+							{% else %}
+							<button class="btnlogin" disabled>You posted this request</button>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+				<br>
+				{% endfor %}
+			</div>
 		</div>
 	</div>
-	<div class="row">
-		<br>
-		<div class="col-md-6" style="margin: 0 auto;">
+	<br>
+	{% else %}
+	<div class="row gx-3">
+		<div class="col-lg-4 col-md-12" style="margin-left: 30px;">
+			<p>Hey, {{fname}} {{lname}}</p>
+			<form action="{{ url_for('home') }}" method="POST">
+				<h4 class="heading2">What I want to learn</h4>
+				<br>
+				<input type="checkbox" id="design" name="learn" value="Design">
+				<label for="design">Design</label><br>
+				<input type="checkbox" id="ml" name="learn" value="Machine Learning">
+				<label for="design">Machine Learning</label><br>
+				<input type="checkbox" id="ai" name="learn" value="Artificial Intelligence">
+				<label for="ai">Artificial Intelligence</label><br>
+				<input type="checkbox" id="crypto" name="learn" value="Blockchain">
+				<label for="crypto">Blockchain</label><br>
+				<input type="checkbox" id="frontend" name="learn" value="Frontend">
+				<label for="Frontend">Frontend</label><br>
+				<input type="checkbox" id="backend" name="learn" value="Backend">
+				<label for="backend">Backend</label><br>
+				<input type="checkbox" id="app" name="learn" value="App Devlopment">
+				<label for="app">App Dev</label><br><br><br>
+				<h4 class="heading2">What I can teach</h4>
+				<br>
+				<input type="checkbox" id="design" name="teach" value="Design">
+				<label for="design">Design</label><br>
+				<input type="checkbox" id="ml" name="teach" value="Machine Learning">
+				<label for="design">Machine Learning</label><br>
+				<input type="checkbox" id="ai" name="teach" value="Artificial Intelligence">
+				<label for="ai">Artificial Intelligence</label><br>
+				<input type="checkbox" id="crypto" name="teach" value="Blockchain">
+				<label for="crypto">Blockchain</label><br>
+				<input type="checkbox" id="frontend" name="teach" value="Frontend">
+				<label for="Frontend">Frontend</label><br>
+				<input type="checkbox" id="backend" name="teach" value="Backend">
+				<label for="backend">Backend</label><br>
+				<input type="checkbox" id="app" name="teach" value="App Devlopment">
+				<label for="app">App Dev</label><br>
+				<br>
+				<input type="submit" style="background-color: rgb(255, 255, 255);">
+			</form>
+		</div>
+		<div class="col-lg-3 col-md-6" style="margin: 0 auto;">
 			<h4 class="heading">Your Matches</h4>
 			<br><br>
 			{% for post in cursor %}
@@ -141,7 +218,15 @@
 					Posted by : {{post['First_Name']}} {{post['Last_Name']}} <br>
 					Can Teach : {{post['Teach']}} <br>
 					Wants to Learn : {{post['Learn']}} <br>
-					Email : {{post['Email']}} <br><br />
+					{% for user in all_users %}
+					{% if user['Email'] == post['Email'] %}
+					{% if user['num_rating'] != 0 %}
+					Rating : {{user['rating']/user['num_rating']}} <br><br />
+					{% else %}
+					Rating: 0<br><br />
+					{% endif %}
+					{% endif %}
+					{% endfor %}
 					<div>
 						{% if (email != post['Email'] and post['_id'] in ids) %}
 						<button class="btnlogin" disabled>You already applied to this request</button>
@@ -159,7 +244,11 @@
 			<br>
 			{% endfor %}
 		</div>
+		<div class="col-lg-4"></div>
 	</div>
+
+	{% endif %}
+
 	<br>
 	<div class="footer">
 		<div class="f1">
