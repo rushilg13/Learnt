@@ -13,10 +13,10 @@
 
 <body>
 	<nav class="navbar row">
-		<div style="margin-left: 30px;"> <a href={{url_for('landing')}}><img class="imgabout image-logo"
+		<div class="col-lg-4" style="margin-left: 30px;"> <a href={{url_for('landing')}}><img class="imgabout image-logo"
 					src='../static/img/logo.svg' width="225" height="40" alt="Logo" /></a>
 		</div>
-		<div class="midnav col-lg-6">
+		<div class="midnav col-lg-4">
 			<ul>
 				<li>
 					<a href="/home">Home</a>
@@ -34,14 +34,20 @@
 				<li>
 					<a href="/logout">Logout</a>
 				</li>
-				{% else %}
-				<li>
-					<a href="/login">Login</a>
-				</li>
 				{% endif %}
-			</ul>
-		</div>
-		<div class="col-lg-1"></div>
+				</ul>
+				</div>
+				{% if 'email' not in session %}
+				<div style="display: flex; justify-content: flex-end;" class="col-lg-3">
+					<a href={{url_for('login')}}>
+					<button class="btnlogin">
+					Login
+					</button>
+					</a>
+				</div>
+				{% else %}
+				<div class="col-lg-3"></div>
+				{% endif %}
 	</nav>
 	<div class="row gx-2">
 		<div class="col-lg-2 col-md-12" style="margin-left: 30px;">

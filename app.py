@@ -63,7 +63,7 @@ def signup():
                 return redirect(url_for('login'))
             else:
                 cipher = generate_password_hash(pass1, method='sha256')
-                user_collection.insert_one({'First Name': fname, 'Last Name': lname, 'Email': email, 'Password': cipher})
+                user_collection.insert_one({'First Name': fname, 'Last Name': lname, 'Email': email, 'Password': cipher, 'rating':0, 'num_rating':0})
                 session['email'] = email
                 return redirect('/home')
         else:
@@ -131,7 +131,6 @@ def home():
             if request.method=="POST":
                 add_collection.insert_one({'Teach': can_teach[0], 'Learn': to_learn[0], 'Email':session['email'], 'First_Name': user['First Name'], 'Last_Name': user['Last Name']})
                 return redirect(url_for('home'))
-    print(ids)
     return render_template('home.html', form_add=form_add, cursor=cursor, email = session['email'], ids = ids)
 
 @app.route('/about')
@@ -146,18 +145,36 @@ def profile():
         user = user_collection.find_one({"Email":session['email']})
         reqs = list(add_collection.find({"Email":session['email']}))
         resps = list(responses_collection.find({"teacher":session['email']}))
-        return render_template('profile.html', num_res = len(resps), num_reqs = len(reqs), profile_id = str(user['_id']), email= session['email'], fname = user['First Name'], lname = user['Last Name'])
+        accepted_reqs = list(responses_collection.find({"seeker_email":session['email'], "status":True}))
+        if user['num_rating'] == 0:
+            rate = 0
+        else:
+            rate = user['rating']/user['num_rating']
+        return render_template('profile.html', num_reqs_accepted=len(accepted_reqs), resps = resps, num_res = len(resps), num_reqs = len(reqs), profile_id = str(user['_id']), email= session['email'], fname = user['First Name'], lname = user['Last Name'], rating = rate)
 
 @app.route('/send_request',  methods=['POST'])
 def send_request():
     if 'email' not in session:
         return redirect(url_for('login'))
     else:
+        user = user_collection.find_one({"Email":session['email']})
         postid = request.form.get("postId")
         post = list(add_collection.find({"_id":ObjectId(postid)}))
         post = post[0]
-        responses_collection.insert_one({"seeker":session['email'], "postid":postid, "teacher" : post['Email']})
+        responses_collection.insert_one({"seeker_email":session['email'], "seeker_fname":user['First Name'], "seeks": post["Learn"], "can_teach": post["Teach"], "seeker_lname":user['Last Name'], "postid":postid, "teacher" : post['Email'], "status":None})
         return redirect(url_for('home'))
+
+@app.route('/accept_request',  methods=['POST'])
+def accept_request():
+    idx = request.form.getlist("respId")
+    delete_response= responses_collection.update_one({'_id':ObjectId(idx[0])}, {'$set':{"status":True}})
+    return redirect(url_for('home'))
+
+@app.route('/reject_request',  methods=['POST'])
+def reject_request():
+    idx = request.form.getlist("respId")
+    delete_response= responses_collection.update_one({'_id':ObjectId(idx[0])}, {'$set':{"status":False}})
+    return redirect(url_for('profile'))
 
 if __name__ == "__main__":
     app.run(debug=True)

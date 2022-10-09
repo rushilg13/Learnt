@@ -61,12 +61,14 @@ p {
 }
 
 .midnav {
+  width: 50%;
   padding: 8px;
   background-image: linear-gradient(white, white);
   border-radius: 10px;
 }
 
 ul {
+  display: inline-block;
   list-style-type: none;
   margin: 0;
   padding: 0;

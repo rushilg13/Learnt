@@ -74,6 +74,12 @@ li {
   text-align: left;
 }
 
+.content2 {
+  text-align: center;
+  margin: 0 auto;
+  align-items: center;
+}
+
 .typewriter {
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   border-right: 0.15em solid rgb(212, 198, 172); /* The typwriter cursor */
@@ -164,7 +170,7 @@ li {
 body {
   background-image: url("../img/bg_new.jpg");
   background-size: 100%;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   min-height: 110vh;
 }
 
@@ -211,6 +217,21 @@ input {
   background-color: white;
   width: 20%;
   margin: 0 auto;
+}
+
+.star{
+  color: gold;
+}
+
+.boxdiv3 {
+  display: flex;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+  align-items: center;
 }
 
 .container {
