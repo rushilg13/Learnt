@@ -9,7 +9,7 @@ In brief, we wanted to build a platform where a person can find a guide/teacher 
 We have also planned to make an app which will make the communication between our users much better. An Machine Learning algorithm will also be implemented for recommending partners to users. We will also establish a rating system, so that a user can be judged on the basis of their teaching skills. <br>
 
 # Deployed At
-https://glitch-matched.herokuapp.com/
+https://matched.onrender.com/
 
 # How to run
 1. in CMD - git clone https://github.com/rushilg13/Learnt.git <br>
