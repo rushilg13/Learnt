@@ -12,6 +12,7 @@ We have also planned to make an app which will make the communication between ou
 https://matched.onrender.com/
 
 # How to run
+------------
 1. in CMD - git clone https://github.com/rushilg13/Learnt.git <br>
 2. cd Learnt <br>
 3. pip install -r requirements.txt
